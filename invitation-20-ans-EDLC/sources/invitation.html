@@ -4,112 +4,76 @@
 <meta charset="utf-8">
 <title>Save the date – 20 ans EDLC</title>
 <style>
-@font-face{font-family:"Open Sans";font-weight:300;src:url(open-sans-latin-300-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:400;src:url(open-sans-latin-400-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:400;font-style:italic;src:url(open-sans-latin-400-italic.woff2)}
 @font-face{font-family:"Open Sans";font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
-
+@font-face{font-family:"Great Vibes";font-weight:400;src:url(great-vibes-latin-400-normal.woff2)}
 @page{size:210mm 297mm;margin:0}
-:root{
-  /* Charte graphique EDLC */
-  --rouge:#EF3F34; --orange:#F89410; --jaune:#FFCB1F;
-  --bleu:#26408F;  --vert:#36B995;   --rose:#F597B8;
-  --gris:#6B7392;  --filet:#D5DAE8;
-}
+:root{--bleu:#26408F;--bleu2:#34509E;--rose:#F597B8;--jaune:#FFCB1F;--rouge:#EF3F34}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:210mm;height:297mm;background:#fff}
-body{font-family:"Open Sans",sans-serif;color:var(--bleu);position:relative;overflow:hidden}
-.a{position:absolute}
-.c{text-align:center}
+html,body{width:210mm;height:297mm;background:var(--bleu)}
+body{font-family:"Open Sans",sans-serif;color:#fff;position:relative;overflow:hidden}
+.a{position:absolute} .c{text-align:center}
+.caps{letter-spacing:0.6mm}
 </style>
 </head>
 <body>
 
-<!-- ===== EN-TÊTE ===== -->
-<img class="a" style="left:69mm;top:11mm;width:72mm" src="logo_edlc.png" alt="Entrepreneurs de la Cité">
-
-<div class="a" style="left:0;top:40mm;width:210mm;height:103mm;background:var(--bleu)"></div>
-<svg class="a" style="left:168mm;top:40mm;width:42mm;height:21mm" viewBox="0 0 42 21"><path fill="#EF3F34" fill-rule="evenodd" d="M0 0h42a21 21 0 0 1-42 0zM11 0a10 10 0 0 0 20 0z"/></svg>
-<svg class="a" style="left:0;top:122mm;width:42mm;height:21mm" viewBox="0 0 42 21"><path fill="#FFCB1F" fill-rule="evenodd" d="M0 21a21 21 0 0 1 42 0zM11 21a10 10 0 0 1 20 0z"/></svg>
-<div class="a" style="left:80mm;top:49mm;width:50mm;height:8.5mm;border-radius:4.25mm;background:var(--rouge)"></div>
-<div class="a c" style="left:80mm;top:50.4mm;width:50mm;font-weight:800;font-size:11pt;color:#fff">SAVE THE DATE</div>
-
-<div class="a c" style="left:30mm;top:62mm;width:150mm;font-size:12.5pt;line-height:1.45;color:#fff">La Fondation Entrepreneurs de la Cité a le plaisir de vous convier<br>à la soirée anniversaire célébrant</div>
-
-<div class="a c" style="left:20mm;top:76mm;width:170mm;font-weight:800;font-size:120pt;line-height:1;color:#fff">20 ans</div>
-<div class="a c" style="left:20mm;top:119mm;width:170mm;font-weight:300;font-size:25pt;line-height:1.2;color:#fff">d’Entrepreneurs de la Cité</div>
-
-<!-- touche charte : 6 pastilles -->
-<svg class="a" style="left:88.5mm;top:134mm;width:33mm;height:3mm" viewBox="0 0 33 3">
-  <circle cx="1.5" cy="1.5" r="1.5" fill="#EF3F34"/><circle cx="7.5" cy="1.5" r="1.5" fill="#F89410"/>
-  <circle cx="13.5" cy="1.5" r="1.5" fill="#FFCB1F"/><circle cx="19.5" cy="1.5" r="1.5" fill="#36B995"/>
-  <circle cx="25.5" cy="1.5" r="1.5" fill="#F597B8"/><circle cx="31.5" cy="1.5" r="1.5" fill="#FFFFFF"/>
+<!-- Grand « 20 » en contour (formes vectorielles) -->
+<svg class="a" style="left:0;top:0;width:210mm;height:297mm" viewBox="0 0 210 297">
+  <path d="M96.31 138.0 L-9.89 138.0 L-9.89 111.97 L25.84 75.84 C33.25 68.1 39.0 61.89 43.11 57.22 C47.21 52.55 50.1 48.58 51.77 45.31 C53.43 42.04 54.27 38.64 54.27 35.1 C54.27 30.76 52.87 27.63 50.06 25.69 C47.26 23.76 43.96 22.79 40.15 22.79 C35.55 22.79 30.9 24.11 26.19 26.74 C21.49 29.38 16.16 33.26 10.23 38.4 L-11.5 12.98 C-7.09 9.04 -2.42 5.29 2.52 1.72 C7.46 -1.85 13.3 -4.77 20.04 -7.04 C26.78 -9.31 34.98 -10.44 44.66 -10.44 C54.6 -10.44 63.23 -8.71 70.53 -5.24 C77.84 -1.77 83.5 2.98 87.5 9.02 C91.5 15.06 93.51 21.92 93.51 29.59 C93.51 38.07 91.96 45.63 88.85 52.27 C85.75 58.91 81.09 65.55 74.89 72.19 C68.68 78.83 60.94 86.35 51.67 94.76 L40.96 104.37 L40.96 105.37 L96.31 105.37 Z" fill="#34509E" stroke="#F597B8" stroke-width="1"/>
+  <path d="M217.03 65.03 C217.03 76.77 216.09 87.27 214.22 96.51 C212.36 105.75 209.37 113.61 205.27 120.08 C201.16 126.56 195.74 131.49 189.0 134.9 C182.26 138.3 173.99 140.0 164.18 140.0 C151.96 140.0 141.95 137.02 134.15 131.04 C126.34 125.07 120.58 116.5 116.88 105.32 C113.18 94.14 111.32 80.71 111.32 65.03 C111.32 49.21 113.01 35.68 116.38 24.44 C119.75 13.19 125.3 4.57 133.05 -1.44 C140.79 -7.44 151.16 -10.44 164.18 -10.44 C176.39 -10.44 186.38 -7.46 194.16 -1.49 C201.93 4.49 207.68 13.09 211.42 24.34 C215.16 35.58 217.03 49.15 217.03 65.03 Z M150.66 65.03 C150.66 74.57 151.01 82.58 151.71 89.05 C152.41 95.53 153.75 100.38 155.72 103.62 C157.69 106.85 160.51 108.47 164.18 108.47 C167.85 108.47 170.65 106.85 172.58 103.62 C174.52 100.38 175.85 95.54 176.59 89.1 C177.32 82.66 177.69 74.64 177.69 65.03 C177.69 55.35 177.32 47.28 176.59 40.81 C175.85 34.33 174.52 29.44 172.58 26.14 C170.65 22.84 167.85 21.19 164.18 21.19 C160.51 21.19 157.69 22.84 155.72 26.14 C153.75 29.44 152.41 34.33 151.71 40.81 C151.01 47.28 150.66 55.35 150.66 65.03 Z" fill="#34509E" stroke="#F597B8" stroke-width="1"/>
 </svg>
 
-<!-- ===== DATE / HEURE / LIEU ===== -->
-<div class="a" style="left:0;top:143mm;width:210mm;height:35mm;background:#EAEEF7"></div>
-<div class="a" style="left:74.6mm;top:151mm;width:0.3mm;height:21mm;background:#C3CBE0"></div>
-<div class="a" style="left:135.3mm;top:151mm;width:0.3mm;height:21mm;background:#C3CBE0"></div>
+<!-- « vingt ans » manuscrit dans le zéro -->
+<div class="a c" style="left:130mm;top:37mm;width:56mm;font-family:'Great Vibes';font-size:46pt;line-height:1;color:var(--rose);transform:rotate(-10deg)">vingt</div>
+<div class="a c" style="left:133mm;top:58mm;width:50mm;font-family:'Great Vibes';font-size:46pt;line-height:1;color:var(--rose);transform:rotate(-10deg)">ans</div>
 
-<div class="a c" style="left:14mm;top:151mm;width:60.6mm;font-size:8.5pt;font-weight:700;color:var(--rouge)">DATE</div>
-<div class="a c" style="left:14mm;top:157mm;width:60.6mm;font-size:14pt;font-weight:700">Mardi 15 juin 2027</div>
+<!-- Pictogramme EDLC au trait (décor) -->
+<svg class="a" style="left:-9mm;top:186mm;width:42mm;height:55mm;transform:rotate(-14deg)" viewBox="-2 -2 104 134">
+  <path d="M32 18A18 18 0 1 0 68 18A18 18 0 1 0 32 18Z" fill="none" stroke="#F597B8" stroke-width="1.6"/>
+  <path d="M0 30H18A32 32 0 0 0 82 30H100A50 50 0 0 1 0 30Z" fill="none" stroke="#F597B8" stroke-width="1.6"/>
+  <path d="M2 130A48 48 0 0 1 98 130H80A30 30 0 0 0 20 130Z" fill="none" stroke="#F597B8" stroke-width="1.6"/>
+</svg>
 
-<div class="a c" style="left:74.9mm;top:151mm;width:60.4mm;font-size:8.5pt;font-weight:700;color:var(--rouge)">HEURE</div>
-<div class="a c" style="left:74.9mm;top:157mm;width:60.4mm;font-size:14pt;font-weight:700">18h30</div>
+<!-- Titre -->
+<div class="a c caps" style="left:20mm;top:147mm;width:170mm;font-size:10pt;font-weight:700;color:var(--jaune)">SAVE THE DATE</div>
+<div class="a c" style="left:10mm;top:153mm;width:190mm;font-size:24pt;font-weight:800;color:var(--rose)">20 ANS D’ENTREPRENEURS DE LA CITÉ</div>
+<div class="a c" style="left:30mm;top:168mm;width:150mm;font-size:10.5pt;line-height:1.45">La Fondation Entrepreneurs de la Cité a le plaisir de vous convier à sa soirée anniversaire : retour sur 20 ans d’engagement, présentation de l’Observatoire de l’assurance inclusive et découverte des grands projets à venir.</div>
 
-<div class="a c" style="left:135.6mm;top:151mm;width:60.4mm;font-size:8.5pt;font-weight:700;color:var(--rouge)">LIEU</div>
-<div class="a c" style="left:135.6mm;top:157mm;width:60.4mm;font-size:14pt;font-weight:700">Le Philanthro-Lab</div>
-<div class="a c" style="left:135.6mm;top:164mm;width:60.4mm;font-size:9pt;line-height:1.35;color:var(--gris)">13-15 rue de la Bûcherie<br>75005 Paris</div>
+<!-- Encadré date -->
+<div class="a" style="left:48mm;top:192mm;width:114mm;height:30mm;border:0.35mm solid var(--rose)"></div>
+<div class="a c" style="left:52mm;top:193.5mm;width:40mm;font-size:62pt;font-weight:800;line-height:1.1;color:var(--rose)">15</div>
+<div class="a" style="left:95mm;top:197mm;width:0.5mm;height:20mm;background:var(--rose)"></div>
+<div class="a caps" style="left:101mm;top:197mm;width:60mm;font-size:12pt;font-weight:700;color:#fff">MARDI</div>
+<div class="a caps" style="left:101mm;top:204mm;width:60mm;font-size:12pt;font-weight:700;color:var(--rose)">15 JUIN 2027</div>
+<div class="a caps" style="left:101mm;top:211mm;width:60mm;font-size:12pt;font-weight:700;color:var(--rose)">À 18H30</div>
 
-<!-- ===== PROGRAMME ===== -->
-<div class="a" style="left:30mm;top:188mm;font-weight:800;font-size:12pt">AU PROGRAMME</div>
-<div class="a" style="left:30mm;top:195mm;width:12mm;height:0.8mm;background:var(--rouge)"></div>
+<!-- Lieu + animation -->
+<div class="a c" style="left:15mm;top:230mm;width:180mm;font-size:10.5pt"><b style="color:var(--rose);font-weight:800">Lieu</b> | Le Philanthro-Lab, 13-15 rue de la Bûcherie, 75005 Paris</div>
+<div class="a c" style="left:15mm;top:237.5mm;width:180mm;font-size:9.5pt;font-style:italic">Soirée animée par le journaliste Jean-Luc Gambey (Vovoxx)</div>
 
-<div class="a" style="left:30mm;top:199.5mm;font-weight:300;font-size:22pt;line-height:1;color:var(--rouge)">01</div>
-<div class="a" style="left:46mm;top:200mm;width:134mm;font-weight:700;font-size:11.5pt">Retour sur 20 ans d’engagement</div>
-<div class="a" style="left:46mm;top:205.5mm;width:134mm;font-size:9pt;color:var(--gris)">Deux décennies au service des entrepreneurs et de leur protection.</div>
+<!-- Bandeau blanc bas de page -->
+<div class="a" style="left:0;top:254mm;width:210mm;height:43mm;background:#fff"></div>
+<img class="a" style="left:14mm;top:258mm;width:56mm" src="logo_edlc.png" alt="Entrepreneurs de la Cité">
+<div class="a" style="left:14mm;top:279mm;font-size:6.5pt;font-weight:700;color:#6B7392">AVEC LE SOUTIEN DE</div>
+<img class="a" style="left:14mm;top:284mm;width:15.2mm;height:6mm" src="fondation_entreprendre.png" alt="Fondation Entreprendre">
+<img class="a" style="left:33mm;top:284mm;width:11mm;height:6mm" src="cfdp.png" alt="CFDP">
+<img class="a" style="left:48mm;top:285mm;width:16.2mm;height:4mm" src="alkera.png" alt="Alkera">
+<img class="a" style="left:68mm;top:284.5mm;width:13.7mm;height:5mm" src="axeria.png" alt="Axeria">
+<img class="a" style="left:85mm;top:284.5mm;width:15.2mm;height:5mm" src="news_assurances_pro.png" alt="News Assurances Pro">
+<div class="a" style="left:118mm;top:262mm;width:46mm;text-align:right;font-size:11pt;font-weight:800;color:var(--bleu)">Inscription</div>
+<div class="a" style="left:118mm;top:268mm;width:46mm;text-align:right;font-size:8pt;line-height:1.35;color:var(--bleu)">Merci de confirmer votre présence en scannant le QR code.</div>
+<img class="a" style="left:168mm;top:259mm;width:28mm;height:28mm" src="qr_fictif.png" alt="QR code (provisoire)">
 
-<div class="a" style="left:30mm;top:214.5mm;font-weight:300;font-size:22pt;line-height:1;color:var(--orange)">02</div>
-<div class="a" style="left:46mm;top:215mm;width:134mm;font-weight:700;font-size:11.5pt">Présentation de l’Observatoire de l’assurance inclusive</div>
-<div class="a" style="left:46mm;top:220.5mm;width:134mm;font-size:9pt;color:var(--gris)">Une nouvelle initiative dévoilée à cette occasion.</div>
-
-<div class="a" style="left:30mm;top:229.5mm;font-weight:300;font-size:22pt;line-height:1;color:var(--vert)">03</div>
-<div class="a" style="left:46mm;top:230mm;width:134mm;font-weight:700;font-size:11.5pt">Les grands projets à venir</div>
-<div class="a" style="left:46mm;top:235.5mm;width:134mm;font-size:9pt;color:var(--gris)">Les ambitions de la Fondation pour les années à venir.</div>
-
-<div class="a" style="left:46mm;top:243mm;width:134mm;font-size:8.5pt;font-style:italic;color:var(--gris)">Le programme détaillé et les intervenants vous seront communiqués prochainement.</div>
-
-<!-- ===== ANIMATION + INSCRIPTION ===== -->
-<div class="a" style="left:30mm;top:254mm;width:20mm;height:20mm;border-radius:50%;background:#EAEEF7"></div>
-<div class="a c" style="left:30mm;top:262mm;width:20mm;font-size:6.5pt;font-weight:600;color:var(--gris)">PHOTO</div>
-<div class="a" style="left:55mm;top:256mm;width:60mm;font-size:9pt;color:var(--gris)">Soirée animée par</div>
-<div class="a" style="left:55mm;top:261mm;width:60mm;font-size:13pt;font-weight:700">Jean-Luc Gambey</div>
-<div class="a" style="left:55mm;top:267.5mm;width:60mm;font-size:9pt;color:var(--gris)">Journaliste, Vovoxx</div>
-
-<div class="a" style="left:120mm;top:252mm;width:76mm;height:25mm;border-radius:2mm;background:var(--bleu)"></div>
-<div class="a" style="left:125mm;top:256mm;width:44mm;font-size:11pt;font-weight:700;color:#fff">Inscription</div>
-<div class="a" style="left:125mm;top:262mm;width:44mm;font-size:8pt;line-height:1.35;color:#fff">Merci de confirmer votre présence en scannant le QR code.</div>
-<div class="a" style="left:172mm;top:254.5mm;width:20mm;height:20mm;border-radius:1mm;background:#fff"></div>
-<img class="a" style="left:173.5mm;top:256mm;width:17mm;height:17mm" src="qr_fictif.png" alt="QR code (provisoire)">
-
-<!-- ===== PARTENAIRES ===== -->
-<div class="a" style="left:14mm;top:282mm;width:182mm;height:0.3mm;background:var(--filet)"></div>
-<div class="a" style="left:14mm;top:286mm;font-size:7pt;font-weight:700;color:var(--gris)">AVEC LE SOUTIEN DE</div>
-<img class="a" style="left:50mm;top:284.5mm;width:17.8mm;height:7mm" src="fondation_entreprendre.png" alt="Fondation Entreprendre">
-<img class="a" style="left:75.8mm;top:284.5mm;width:12.8mm;height:7mm" src="cfdp.png" alt="CFDP">
-<img class="a" style="left:96.6mm;top:285.75mm;width:18.2mm;height:4.5mm" src="alkera.png" alt="Alkera">
-<img class="a" style="left:122.8mm;top:285mm;width:16.4mm;height:6mm" src="axeria.png" alt="Axeria">
-<img class="a" style="left:147.2mm;top:285mm;width:18.2mm;height:6mm" src="news_assurances_pro.png" alt="News Assurances Pro">
-
-<!-- ===== FILET COULEURS CHARTE ===== -->
-<div class="a" style="left:0mm;top:294mm;width:35mm;height:3mm;background:var(--rouge)"></div>
-<div class="a" style="left:35mm;top:294mm;width:35mm;height:3mm;background:var(--orange)"></div>
-<div class="a" style="left:70mm;top:294mm;width:35mm;height:3mm;background:var(--jaune)"></div>
-<div class="a" style="left:105mm;top:294mm;width:35mm;height:3mm;background:var(--vert)"></div>
-<div class="a" style="left:140mm;top:294mm;width:35mm;height:3mm;background:var(--rose)"></div>
-<div class="a" style="left:175mm;top:294mm;width:35mm;height:3mm;background:var(--bleu)"></div>
-
+<!-- Filet couleurs charte -->
+<div class="a" style="left:0;top:294mm;width:35mm;height:3mm;background:#EF3F34"></div>
+<div class="a" style="left:35mm;top:294mm;width:35mm;height:3mm;background:#F89410"></div>
+<div class="a" style="left:70mm;top:294mm;width:35mm;height:3mm;background:#FFCB1F"></div>
+<div class="a" style="left:105mm;top:294mm;width:35mm;height:3mm;background:#36B995"></div>
+<div class="a" style="left:140mm;top:294mm;width:35mm;height:3mm;background:#F597B8"></div>
+<div class="a" style="left:175mm;top:294mm;width:35mm;height:3mm;background:#26408F"></div>
 </body>
 </html>
