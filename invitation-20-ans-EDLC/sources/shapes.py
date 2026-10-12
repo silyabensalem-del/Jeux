@@ -34,9 +34,9 @@ def glyph_poly(font, gname, em, x, base):
     return g
 
 def picto_solid():
-    head=Point(76.5,33.5).buffer(33.5,256)
+    head=Point(76.5,33.5).buffer(33.5,64)
     def half_annulus(cx,cy,R,r,lower):
-        ring=Point(cx,cy).buffer(R,256).difference(Point(cx,cy).buffer(r,256))
+        ring=Point(cx,cy).buffer(R,64).difference(Point(cx,cy).buffer(r,64))
         clip=box(cx-R-1, cy, cx+R+1, cy+R+1) if lower else box(cx-R-1, cy-R-1, cx+R+1, cy)
         return ring.intersection(clip)
     return unary_union([head, half_annulus(76.5,35,76.5,45.5,True), half_annulus(76.5,193,76.5,45.5,False)])
@@ -45,7 +45,7 @@ def to_path(geom, ox, oy, k):
     geom=geom if isinstance(geom,MultiPolygon) else MultiPolygon([geom]) if geom.geom_type=='Polygon' else MultiPolygon([g for g in geom.geoms if g.geom_type=='Polygon'])
     parts=[]
     for p in geom.geoms:
-        p=orient(p.simplify(0.02),1.0)
+        p=orient(p.simplify(0.06),1.0)
         for ring in [p.exterior]+list(p.interiors):
             c=list(ring.coords)[:-1]
             parts.append("M"+" L".join("%.2f %.2f"%((X-ox)*k,(Y-oy)*k) for X,Y in c)+"Z")
