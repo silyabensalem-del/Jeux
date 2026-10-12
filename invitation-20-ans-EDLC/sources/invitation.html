@@ -9,170 +9,108 @@
 @font-face{font-family:"Open Sans";font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
-@font-face{font-family:"Noto Serif Display";font-weight:400;src:url(noto-serif-display-latin-400-normal.woff2)}
-@font-face{font-family:"Noto Serif Display";font-weight:700;src:url(noto-serif-display-latin-700-normal.woff2)}
 
 @page{size:210mm 297mm;margin:0}
 :root{
-  --orange:#E94D0F;   /* fond / cadre (charte invitation EDLC) */
-  --orange2:#F07D1A;  /* titres */
-  --rouge:#E52F27;    /* rouge du logo */
-  --peche:#FDEBDD;    /* fond clair des cartes */
-  --texte:#2B2B2B;
-  --gris:#6B6B6B;
+  /* Charte graphique EDLC */
+  --rouge:#EF3F34; --orange:#F89410; --jaune:#FFCB1F;
+  --bleu:#26408F;  --vert:#36B995;   --rose:#F597B8;
+  /* teintes claires dérivées */
+  --rouge-l:#FDE2E0; --jaune-l:#FFF3C7; --rose-l:#FDE6EE;
+  --fond:#FFFAF2; --texte:#26408F; --gris:#5A6383;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:210mm;height:297mm;background:var(--orange)}
+html,body{width:210mm;height:297mm;background:var(--fond)}
 body{font-family:"Open Sans",sans-serif;color:var(--texte);position:relative;overflow:hidden}
-
-.card{position:absolute;left:8mm;top:8mm;width:194mm;height:281mm;background:#fff;border-radius:6mm}
-
-.abs{position:absolute}
-
-/* En-tête */
-.logo{left:65mm;top:15mm;width:80mm}
-.rule{left:62mm;top:37mm;width:86mm;height:0.4mm;background:#C9C9C9}
-.tagline{left:40mm;top:38.5mm;width:130mm;text-align:center;font-size:8.5pt;font-weight:600;color:var(--rouge)}
-
-/* Pastille 20 ans */
-.badge{left:170mm;top:14mm;width:26mm;height:26mm;border-radius:50%;background:var(--orange)}
-.badge-num{left:170mm;top:17mm;width:26mm;text-align:center;color:#fff;font-family:"Noto Serif Display",serif;font-weight:700;font-size:30pt;line-height:1}
-.badge-txt{left:170mm;top:30mm;width:26mm;text-align:center;color:#fff;font-weight:700;font-size:8pt}
-
-/* Save the date */
-.std-bg{left:80mm;top:48mm;width:50mm;height:9mm;border-radius:4.5mm;background:var(--orange)}
-.std{left:80mm;top:49.6mm;width:50mm;text-align:center;color:#fff;font-weight:800;font-size:11pt}
-
-/* Guillemets + invitation */
-.q1{left:24mm;top:62mm;font-family:"Noto Serif Display",serif;font-size:44pt;color:var(--texte);line-height:1}
-.q1-line{left:35mm;top:68.5mm;width:14mm;height:0.5mm;background:var(--texte)}
-.q1-vert{left:26.5mm;top:77mm;width:0.5mm;height:9mm;background:var(--texte)}
-.intro{left:30mm;top:71mm;width:150mm;text-align:center;font-size:12.5pt;line-height:1.35}
-.titre1{left:20mm;top:84mm;width:170mm;text-align:center;font-weight:800;font-size:40pt;line-height:1.05;color:var(--orange2)}
-.titre2{left:20mm;top:103mm;width:170mm;text-align:center;font-weight:400;font-size:22pt;line-height:1.15;color:var(--texte)}
-.q2-line{left:161mm;top:122mm;width:14mm;height:0.5mm;background:var(--texte)}
-.q2-vert{left:183.5mm;top:110mm;width:0.5mm;height:9mm;background:var(--texte)}
-.q2{left:176mm;top:111.5mm;font-family:"Noto Serif Display",serif;font-size:44pt;color:var(--texte);line-height:1}
-
-/* Programme (teaser) */
-.prog-h{left:20mm;top:135mm;font-weight:800;font-size:15pt;color:var(--orange)}
-.prog-sub{left:20mm;top:142.5mm;font-size:9.5pt;font-style:italic;color:var(--gris)}
-.item{left:20mm;width:100mm;height:21mm;border-radius:3mm;background:var(--peche)}
-.item-bar{left:20mm;width:2.4mm;height:21mm;border-radius:3mm 0 0 3mm;background:var(--orange)}
-.item-num{left:25mm;font-family:"Noto Serif Display",serif;font-weight:700;font-size:24pt;color:var(--orange);line-height:1}
-.item-t{left:41mm;width:76mm;font-weight:700;font-size:11pt;line-height:1.25;color:var(--texte)}
-.item-d{left:41mm;width:76mm;font-size:8.8pt;line-height:1.3;color:var(--gris)}
-.soon{left:20mm;top:226mm;width:100mm;font-size:9pt;font-style:italic;color:var(--gris)}
-
-/* Date */
-.d-jour{left:126mm;top:128mm;width:66mm;text-align:right;font-family:"Noto Serif Display",serif;font-weight:400;font-size:96pt;line-height:1;color:var(--orange)}
-.d-mois{left:120mm;top:163mm;width:72mm;text-align:right;font-family:"Noto Serif Display",serif;font-weight:400;font-size:60pt;line-height:1;color:var(--orange)}
-.d-an{left:120mm;top:185mm;width:72mm;text-align:right;font-family:"Noto Serif Display",serif;font-weight:400;font-size:52pt;line-height:1;color:var(--orange)}
-.d-h{left:120mm;top:205mm;width:72mm;text-align:right;font-family:"Noto Serif Display",serif;font-weight:400;font-size:28pt;line-height:1;color:var(--orange)}
-
-/* Animation */
-.anim-bg{left:126mm;top:221mm;width:66mm;height:19mm;border-radius:3mm;background:var(--orange)}
-.anim-photo{left:129mm;top:223.5mm;width:14mm;height:14mm;border-radius:50%;background:#fff}
-.anim-photo-txt{left:129mm;top:228.3mm;width:14mm;text-align:center;font-size:6pt;font-weight:600;color:var(--orange)}
-.anim-1{left:146mm;top:223.5mm;width:45mm;font-size:8.5pt;color:#fff;line-height:1.25}
-.anim-2{left:146mm;top:227.6mm;width:45mm;font-size:10.5pt;font-weight:800;color:#fff;line-height:1.25}
-.anim-3{left:146mm;top:233.2mm;width:45mm;font-size:8.5pt;font-style:italic;color:#fff;line-height:1.25}
-
-/* Lieu */
-.pin{left:20mm;top:233mm;width:7mm;height:10mm}
-.lieu-1{left:29mm;top:232.5mm;font-weight:800;font-size:12pt}
-.lieu-2{left:29mm;top:238.3mm;font-size:10.5pt}
-
-/* Bas de page */
-.sep{left:20mm;top:249mm;width:170mm;height:0.3mm;background:#E2E2E2}
-.part-h{left:20mm;top:252mm;font-size:8pt;font-weight:600;color:var(--gris)}
-.p{object-fit:contain}
-.qr-bg{left:150mm;top:251mm;width:40mm;height:34mm;border-radius:3mm;background:var(--orange)}
-.qr-t1{left:150mm;top:252.3mm;width:40mm;text-align:center;font-size:8pt;font-weight:800;color:#fff}
-.qr-t2{left:150mm;top:256.2mm;width:40mm;text-align:center;font-size:7pt;color:#fff}
-.qr-w{left:159mm;top:260.5mm;width:22mm;height:22mm;background:#fff;border-radius:1.5mm}
-.qr{left:160.5mm;top:262mm;width:19mm;height:19mm}
+.a{position:absolute}
+.w{color:#fff}
 </style>
 </head>
 <body>
-<div class="card"></div>
 
-<!-- En-tête -->
-<img class="abs logo" src="logo_edlc.png" alt="Entrepreneurs de la Cité">
-<div class="abs badge"></div>
-<div class="abs badge-num">20</div>
-<div class="abs badge-txt">ANS</div>
+<!-- ===== EN-TÊTE ===== -->
+<img class="a" style="left:14mm;top:11mm;width:66mm" src="logo_edlc.png" alt="Entrepreneurs de la Cité">
+<div class="a" style="left:142mm;top:15mm;width:54mm;height:11mm;border-radius:5.5mm;background:var(--rouge)"></div>
+<div class="a w" style="left:142mm;top:16.7mm;width:54mm;text-align:center;font-weight:800;font-size:12.5pt">SAVE THE DATE</div>
 
-<div class="abs std-bg"></div>
-<div class="abs std">SAVE THE DATE</div>
+<!-- ===== BLOC PRINCIPAL ===== -->
+<div class="a" style="left:14mm;top:38mm;width:182mm;height:114mm;border-radius:8mm;background:var(--bleu)"></div>
 
-<!-- Invitation -->
-<div class="abs q1">“</div>
-<div class="abs q1-line"></div>
-<div class="abs q1-vert"></div>
-<div class="abs intro">La Fondation EDLC a le plaisir de vous inviter à célébrer</div>
-<div class="abs titre1">LES 20 ANS</div>
-<div class="abs titre2">D’ENTREPRENEURS DE LA CITÉ</div>
-<div class="abs q2-vert"></div>
-<div class="abs q2-line"></div>
-<div class="abs q2">”</div>
+<!-- formes décoratives (arcs du pictogramme) -->
+<svg class="a" style="left:146mm;top:38mm;width:36mm;height:18mm" viewBox="0 0 36 18"><path fill="#FFCB1F" d="M0 0h36a18 18 0 0 1-36 0zM9 0a9 9 0 0 0 18 0z" fill-rule="evenodd"/></svg>
+<svg class="a" style="left:30mm;top:134mm;width:36mm;height:18mm" viewBox="0 0 36 18"><path fill="#36B995" d="M0 18a18 18 0 0 1 36 0zM9 18a9 9 0 0 1 18 0z" fill-rule="evenodd"/></svg>
+<svg class="a" style="left:121mm;top:47mm;width:6mm;height:6mm" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#F597B8"/></svg>
+<svg class="a" style="left:184mm;top:70mm;width:4mm;height:4mm" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#F89410"/></svg>
+<svg class="a" style="left:74mm;top:142mm;width:4mm;height:4mm" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#EF3F34"/></svg>
 
-<!-- Programme teaser -->
-<div class="abs prog-h">AU PROGRAMME</div>
-<div class="abs prog-sub">Une soirée pour regarder en arrière… et surtout vers l’avenir</div>
+<div class="a w" style="left:25mm;top:47mm;width:95mm;font-size:11.5pt;line-height:1.4">La Fondation EDLC a le plaisir de vous inviter à la soirée anniversaire des</div>
+<div class="a" style="left:22mm;top:56mm;font-weight:800;font-size:150pt;line-height:1;color:var(--jaune)">20</div>
+<div class="a w" style="left:89mm;top:84mm;font-weight:800;font-size:46pt;line-height:1">ANS</div>
+<div class="a w" style="left:25mm;top:112mm;width:110mm;font-weight:800;font-size:21pt;line-height:1.15">d’Entrepreneurs de la Cité</div>
+<div class="a" style="left:25mm;top:122.5mm;width:110mm;font-size:10.5pt;font-style:italic;color:var(--jaune)">20 ans aux côtés de celles et ceux qui entreprennent</div>
 
-<div class="abs item" style="top:150mm"></div>
-<div class="abs item-bar" style="top:150mm"></div>
-<div class="abs item-num" style="top:154mm">01</div>
-<div class="abs item-t" style="top:152.5mm">Retour sur 20 ans d’engagement</div>
-<div class="abs item-d" style="top:158.3mm">Les moments forts et les entrepreneurs qui ont marqué l’histoire d’EDLC</div>
+<img class="a" style="left:134mm;top:66mm;width:58mm" src="illu_groupe.png" alt="Illustration">
 
-<div class="abs item" style="top:174mm"></div>
-<div class="abs item-bar" style="top:174mm"></div>
-<div class="abs item-num" style="top:178mm">02</div>
-<div class="abs item-t" style="top:176.5mm">Présentation de l’Observatoire de l’assurance inclusive</div>
-<div class="abs item-d" style="top:187.6mm">Une nouvelle initiative, dévoilée en avant-première</div>
+<!-- ===== INFOS PRATIQUES ===== -->
+<div class="a" style="left:14mm;top:158mm;width:62mm;height:30mm;border-radius:5mm;background:var(--rouge)"></div>
+<div class="a w" style="left:20mm;top:161.5mm;font-size:10pt;font-weight:600">Mardi</div>
+<div class="a w" style="left:20mm;top:166.5mm;font-size:24pt;font-weight:800;line-height:1.1">15 JUIN</div>
+<div class="a w" style="left:20mm;top:177mm;font-size:16pt;font-weight:400;line-height:1.1">2027</div>
 
-<div class="abs item" style="top:198mm"></div>
-<div class="abs item-bar" style="top:198mm"></div>
-<div class="abs item-num" style="top:202mm">03</div>
-<div class="abs item-t" style="top:200.5mm">Les grands projets à venir</div>
-<div class="abs item-d" style="top:206.3mm">Les ambitions de la Fondation pour les prochaines années… surprise !</div>
+<div class="a" style="left:80mm;top:158mm;width:38mm;height:30mm;border-radius:5mm;background:var(--orange)"></div>
+<div class="a w" style="left:80mm;top:162.5mm;width:38mm;text-align:center;font-size:10pt;font-weight:600">À partir de</div>
+<div class="a w" style="left:80mm;top:168mm;width:38mm;text-align:center;font-size:24pt;font-weight:800;line-height:1.1">18H30</div>
 
-<div class="abs soon">Programme détaillé et intervenants dévoilés prochainement.</div>
+<div class="a" style="left:122mm;top:158mm;width:74mm;height:30mm;border-radius:5mm;background:var(--vert)"></div>
+<svg class="a" style="left:128mm;top:164mm;width:7mm;height:10mm" viewBox="0 0 24 34"><path fill="#fff" d="M12 0C5.4 0 0 5.4 0 12c0 9 12 22 12 22s12-13 12-22C24 5.4 18.6 0 12 0zm0 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg>
+<div class="a w" style="left:138mm;top:163mm;width:56mm;font-size:13pt;font-weight:800">Le Philanthro-Lab</div>
+<div class="a w" style="left:138mm;top:170mm;width:56mm;font-size:9.5pt;line-height:1.35">13-15 rue de la Bûcherie<br>75005 Paris</div>
 
-<!-- Date -->
-<div class="abs d-jour">15</div>
-<div class="abs d-mois">JUIN</div>
-<div class="abs d-an">2027</div>
-<div class="abs d-h">À 18H30</div>
+<!-- ===== PROGRAMME (TEASER) ===== -->
+<div class="a" style="left:14mm;top:195mm;font-weight:800;font-size:15pt">AU PROGRAMME</div>
+<div class="a" style="left:14mm;top:203mm;width:20mm;height:1.2mm;border-radius:0.6mm;background:var(--jaune)"></div>
+<div class="a" style="left:60mm;top:197mm;width:136mm;text-align:right;font-size:9.5pt;font-style:italic;color:var(--gris)">Programme détaillé et intervenants dévoilés prochainement…</div>
 
-<!-- Animation -->
-<div class="abs anim-bg"></div>
-<div class="abs anim-photo"></div>
-<div class="abs anim-photo-txt">PHOTO</div>
-<div class="abs anim-1">Animée par le journaliste</div>
-<div class="abs anim-2">Jean-Luc GAMBEY</div>
-<div class="abs anim-3">Vovoxx</div>
+<div class="a" style="left:14mm;top:209mm;width:57.3mm;height:37mm;border-radius:5mm;background:var(--rouge-l)"></div>
+<div class="a" style="left:19mm;top:213mm;width:11mm;height:11mm;border-radius:50%;background:var(--rouge)"></div>
+<div class="a w" style="left:19mm;top:214.6mm;width:11mm;text-align:center;font-weight:800;font-size:12pt">1</div>
+<div class="a" style="left:19mm;top:227mm;width:48mm;font-weight:800;font-size:10.5pt;line-height:1.25">Retour sur 20 ans d’engagement</div>
+<div class="a" style="left:19mm;top:237.5mm;width:48mm;font-size:8pt;line-height:1.3;color:var(--gris)">Les temps forts d’une belle aventure</div>
 
-<!-- Lieu -->
-<svg class="abs pin" viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><path fill="#E94D0F" d="M12 0C5.4 0 0 5.4 0 12c0 9 12 22 12 22s12-13 12-22C24 5.4 18.6 0 12 0zm0 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg>
-<div class="abs lieu-1">LE PHILANTHRO-LAB</div>
-<div class="abs lieu-2">13-15 rue de la Bûcherie, 75005 Paris</div>
+<div class="a" style="left:76.3mm;top:209mm;width:57.3mm;height:37mm;border-radius:5mm;background:var(--jaune-l)"></div>
+<div class="a" style="left:81.3mm;top:213mm;width:11mm;height:11mm;border-radius:50%;background:var(--orange)"></div>
+<div class="a w" style="left:81.3mm;top:214.6mm;width:11mm;text-align:center;font-weight:800;font-size:12pt">2</div>
+<div class="a" style="left:81.3mm;top:227mm;width:48mm;font-weight:800;font-size:10.5pt;line-height:1.25">L’Observatoire de l’assurance inclusive</div>
+<div class="a" style="left:81.3mm;top:237.5mm;width:48mm;font-size:8pt;line-height:1.3;color:var(--gris)">Présentation en avant-première</div>
 
-<!-- Partenaires + inscription -->
-<div class="abs sep"></div>
-<div class="abs part-h">AVEC LE SOUTIEN DE NOS PARTENAIRES :</div>
-<img class="abs p" style="left:20.0mm;top:261.00mm;width:25.4mm;height:10mm" src="fondation_entreprendre.png" alt="Fondation Entreprendre">
-<img class="abs p" style="left:49.4mm;top:261.00mm;width:18.3mm;height:10mm" src="cfdp.png" alt="CFDP">
-<img class="abs p" style="left:71.7mm;top:263.25mm;width:22.2mm;height:5.5mm" src="alkera.png" alt="Alkera">
-<img class="abs p" style="left:97.9mm;top:262.25mm;width:20.5mm;height:7.5mm" src="axeria.png" alt="Axeria">
-<img class="abs p" style="left:122.4mm;top:262.50mm;width:21.2mm;height:7mm" src="news_assurances_pro.png" alt="News Assurances Pro">
+<div class="a" style="left:138.6mm;top:209mm;width:57.4mm;height:37mm;border-radius:5mm;background:var(--rose-l)"></div>
+<div class="a" style="left:143.6mm;top:213mm;width:11mm;height:11mm;border-radius:50%;background:var(--rose)"></div>
+<div class="a w" style="left:143.6mm;top:214.6mm;width:11mm;text-align:center;font-weight:800;font-size:12pt">3</div>
+<div class="a" style="left:143.6mm;top:227mm;width:48mm;font-weight:800;font-size:10.5pt;line-height:1.25">Les grands projets à venir</div>
+<div class="a" style="left:143.6mm;top:237.5mm;width:48mm;font-size:8pt;line-height:1.3;color:var(--gris)">Cap sur les 20 prochaines années</div>
 
-<div class="abs qr-bg"></div>
-<div class="abs qr-t1">Réservez votre soirée !</div>
-<div class="abs qr-t2">Inscription en scannant :</div>
-<div class="abs qr-w"></div>
-<img class="abs qr" src="qr_fictif.png" alt="QR code (provisoire)">
+<!-- ===== ANIMATION + INSCRIPTION ===== -->
+<div class="a" style="left:14mm;top:251mm;width:118mm;height:27mm;border-radius:5mm;background:var(--bleu)"></div>
+<div class="a" style="left:19mm;top:254.5mm;width:20mm;height:20mm;border-radius:50%;background:#fff"></div>
+<div class="a" style="left:19mm;top:262.3mm;width:20mm;text-align:center;font-size:7pt;font-weight:700;color:var(--bleu)">PHOTO</div>
+<div class="a w" style="left:44mm;top:256mm;width:85mm;font-size:9.5pt">Soirée animée par le journaliste</div>
+<div class="a" style="left:44mm;top:261mm;width:85mm;font-size:15pt;font-weight:800;color:var(--jaune)">Jean-Luc GAMBEY</div>
+<div class="a w" style="left:44mm;top:269mm;width:85mm;font-size:9.5pt;font-style:italic">du média Vovoxx</div>
+
+<div class="a" style="left:136mm;top:251mm;width:60mm;height:27mm;border-radius:5mm;background:var(--jaune)"></div>
+<div class="a" style="left:140mm;top:255mm;width:30mm;font-size:11pt;font-weight:800;line-height:1.2">Je m’inscris !</div>
+<div class="a" style="left:140mm;top:265mm;width:30mm;font-size:8pt;line-height:1.3">Scannez le QR code</div>
+<div class="a" style="left:170.5mm;top:253.5mm;width:22mm;height:22mm;border-radius:2mm;background:#fff"></div>
+<img class="a" style="left:172mm;top:255mm;width:19mm;height:19mm" src="qr_fictif.png" alt="QR code (provisoire)">
+
+<!-- ===== PARTENAIRES ===== -->
+<div class="a" style="left:14mm;top:281mm;width:182mm;height:10mm;border-radius:3mm;background:#fff"></div>
+<div class="a" style="left:18mm;top:284.3mm;font-size:7.5pt;font-weight:700;color:var(--gris)">AVEC LE SOUTIEN DE :</div>
+<img class="a" style="left:48mm;top:282mm;width:20.3mm;height:8mm" src="fondation_entreprendre.png" alt="Fondation Entreprendre">
+<img class="a" style="left:75mm;top:282mm;width:14.6mm;height:8mm" src="cfdp.png" alt="CFDP">
+<img class="a" style="left:97mm;top:283.5mm;width:20.2mm;height:5mm" src="alkera.png" alt="Alkera">
+<img class="a" style="left:125mm;top:282.5mm;width:19.1mm;height:7mm" src="axeria.png" alt="Axeria">
+<img class="a" style="left:152mm;top:282.75mm;width:19.7mm;height:6.5mm" src="news_assurances_pro.png" alt="News Assurances Pro">
+
 </body>
 </html>
