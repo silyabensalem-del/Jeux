@@ -526,12 +526,15 @@ picture(s2, f"{IMG}/interlocutrice.png", W - M - 132, cy + chh - 112, w=118, nam
 cx = M + 18
 text(s2, cx, cy + 12, 360, 24, "Engageons-nous ensemble", size=17, font=TITLE_FONT, bold=True, color=WHITE,
      spacing=1.0, name="Contact – titre")
-text(s2, cx, cy + 40, 400, 36,
+text(s2, cx, cy + 40, 400, 14,
      [[("Pour toute information, n’hésitez pas à contacter ", {}),
-       ("Claire BENISTI - Déléguée Générale", {"bold": True}), (" : ", {}),
-       ("claire.benisti@entrepreneursdelacite.org",
+       ("Claire BENISTI - Déléguée Générale", {"bold": True}), (" :", {})]],
+     size=8.8, color=WHITE, spacing=1.2, name="Contact – texte")
+# e-mail du même paragraphe Word, dans sa propre zone pour garder sa couleur dans Canva
+text(s2, cx, cy + 57, 400, 14,
+     [[("claire.benisti@entrepreneursdelacite.org",
         {"link": "mailto:claire.benisti@entrepreneursdelacite.org", "color": YELLOW, "bold": True})]],
-     size=8.8, color=WHITE, spacing=1.35, name="Contact – texte")
+     size=8.8, color=WHITE, spacing=1.2, name="Contact – e-mail")
 hline(s2, cx, cy + 82, 340, RGBColor(0x5A, 0x70, 0xB5), 0.6, name="Contact – séparateur")
 icon_pin(s2, cx + 1, cy + 93, 8.5, YELLOW, BLUE)
 text(s2, cx + 17, cy + 90, 330, 28,
