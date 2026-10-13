@@ -161,17 +161,60 @@ def sub_title(sl, x, y, label, w=CW, color=BLUE, size=11.5):
                 spacing=1.0, name=label)
 
 
-def chrome(sl, page):
-    """Bandeau haut, en-tête et pied de page (identiques sur les 2 pages)."""
+def chrome_top(sl):
+    """Bandeau haut et en-tête (texte de l’en-tête du Word)."""
     rect(sl, 0, 0, W, 7, CORAL, name="Bandeau haut corail")
     text(sl, W - M - 300, 15, 300, 10, "ENTREPRENEURS DE LA CITÉ  |  FONDATION RECONNUE D’UTILITÉ PUBLIQUE",
          size=6.5, color=GREY, align=PP_ALIGN.RIGHT, spc=0.4, name="En-tête")
+
+
+def chrome_bottom(sl):
+    """Pied de page (texte du pied de page du Word)."""
     hline(sl, M, H - 34, CW, CORAL, 0.75, name="Pied de page – filet")
     text(sl, M, H - 27, CW, 10, [[("ENTREPRENEURS DE LA CITÉ", {"bold": True, "color": CORAL}),
                                   ("  •  Prévenir, protéger, pérenniser", {})]],
          size=6.8, color=GREY, align=PP_ALIGN.CENTER, spc=0.3, name="Pied de page")
-    text(sl, W - M - 20, H - 27, 20, 10, str(page), size=6.8, color=GREY, bold=True,
-         align=PP_ALIGN.RIGHT, name="Numéro de page")
+
+
+def styled_table(sl, x, y, col_widths, row_heights, rows, style, name):
+    """Tableau natif. rows : liste de lignes ; cellule = list de paragraphes (list de runs (texte, opts)).
+    style(r, j) -> (fond, couleur texte, taille, gras, alignement)."""
+    gt = sl.shapes.add_table(len(rows), len(col_widths), Pt(x), Pt(y), Pt(sum(col_widths)), Pt(sum(row_heights)))
+    gt.name = name
+    tbl = gt.table
+    tbl._tbl.tblPr.set("firstRow", "0"); tbl._tbl.tblPr.set("bandRow", "0")
+    for j, wcol in enumerate(col_widths):
+        tbl.columns[j].width = Pt(wcol)
+    for r, hrow in enumerate(row_heights):
+        tbl.rows[r].height = Pt(hrow)
+    for r, row in enumerate(rows):
+        for j, paras in enumerate(row):
+            fill, color, size, bold, align = style(r, j)
+            cell = tbl.cell(r, j)
+            cell.margin_left = cell.margin_right = Pt(6)
+            cell.margin_top = cell.margin_bottom = Pt(2)
+            cell.vertical_anchor = MSO_ANCHOR.MIDDLE
+            cell.fill.solid(); cell.fill.fore_color.rgb = fill
+            tf = cell.text_frame
+            tf.word_wrap = True
+            for k, para in enumerate(paras):
+                p = tf.paragraphs[0] if k == 0 else tf.add_paragraph()
+                p.alignment = align
+                p.line_spacing = 1.0
+                runs = [(para, {})] if isinstance(para, str) else para
+                for t, o in runs:
+                    run = p.add_run(); run.text = t
+                    f = run.font; f.name = BODY_FONT
+                    f.size = Pt(o.get("size", size)); f.bold = o.get("bold", bold)
+                    f.color.rgb = o.get("color", color)
+            tcPr = cell._tc.get_or_add_tcPr()
+            for edge in ("a:lnL", "a:lnR", "a:lnT", "a:lnB"):
+                ln = tcPr.makeelement(qn(edge), {"w": str(Pt(0.5)), "cap": "flat", "cmpd": "sng", "algn": "ctr"})
+                sf = ln.makeelement(qn("a:solidFill"), {})
+                sf.append(sf.makeelement(qn("a:srgbClr"), {"val": "D9DCE6"}))
+                ln.append(sf)
+                tcPr.append(ln)
+    return gt
 
 
 # ---------- pictogrammes vectoriels (formes natives) ----------
@@ -214,12 +257,6 @@ def icon_prevent(sl, x, y, d, bg, fg):
     rect(sl, x + 13 * s, y + 23.5 * s, 4 * s, 1.4 * s, fg, name="Picto prévenir – trait 2")
 
 
-def icon_mail(sl, x, y, w, color):
-    h = w * 0.68
-    rect(sl, x, y, w, h, None, line=color, lw=0.9, name="Picto e-mail – enveloppe")
-    preset(sl, MSO_SHAPE.FLOWCHART_MERGE, x, y, w, h * 0.55, None, line=color, name="Picto e-mail – rabat")
-
-
 def icon_pin(sl, x, y, d, color, hole):
     preset(sl, MSO_SHAPE.FLOWCHART_MERGE, x + d * 0.14, y + d * 0.55, d * 0.72, d * 0.75, color,
            name="Picto adresse – pointe")
@@ -237,7 +274,7 @@ def icon_web(sl, x, y, d, color):
 # PAGE 1
 # =====================================================================
 s1 = prs.slides.add_slide(blank)
-chrome(s1, 1)
+chrome_top(s1)
 
 picture(s1, f"{IMG}/logo_edlc.png", M, 26, w=128, name="Logo EDLC")
 
@@ -253,19 +290,10 @@ text(s1, M, 180, 370, 32,
      "Devenez mécène d’une économie où chacun peut entreprendre — et faire durer son activité.",
      size=11, color=BLUE, bold=True, spacing=1.15, name="Sous-titre")
 
-# piliers
-px = M
-for label, bg, fg in (("PRÉVENIR", YELLOW, BLUE), ("PROTÉGER", CORAL, WHITE), ("PÉRENNISER", BLUE, WHITE)):
-    wpill = 9 + len(label) * 5.6
-    pill = rect(s1, px, 220, wpill, 17, bg, radius=8.5, name=f"Pilier {label} – fond")
-    t = text(s1, px, 220, wpill, 17, label, size=7.5, bold=True, color=fg, align=PP_ALIGN.CENTER,
-             anchor=MSO_ANCHOR.MIDDLE, spc=0.8, name=f"Pilier {label}")
-    group(s1, [pill, t], f"Pilier {label}")
-    px += wpill + 4
-    if label != "PÉRENNISER":
-        text(s1, px, 220, 8, 17, "•", size=9, bold=True, color=CORAL, align=PP_ALIGN.CENTER,
-             anchor=MSO_ANCHOR.MIDDLE, name="Séparateur piliers")
-        px += 12
+# piliers (ligne du Word, texte inchangé)
+text(s1, M, 220, 375, 16, [[("PRÉVENIR", {}), ("  •  ", {"color": CORAL}), ("PROTÉGER", {}),
+                             ("  •  ", {"color": CORAL}), ("PÉRENNISER", {})]],
+     size=9.5, bold=True, color=BLUE, spc=1.0, anchor=MSO_ANCHOR.MIDDLE, name="Piliers")
 
 # --- Introduction ---
 rect(s1, M, 252, 3, 40, CORAL, name="Introduction – filet")
@@ -345,19 +373,16 @@ for i, (lab, c, t_, body) in enumerate(cards):
 y = 676
 sub_title(s1, M, y, "Un impact social documenté")
 stats = [("58", " % de femmes", CORAL), ("82", " % d’anciens demandeurs d’emploi", ORANGE),
-         ("81", " % de travailleurs handicapés", BLUE), (None, "Moyenne d’âge de 48 ans", GREEN)]
+         ("81", " % de travailleurs handicapés", BLUE), ("Moyenne d’âge de 48 ans", "", GREEN)]
 sw = (CW - 3 * 8) / 4
 for i, (num, lab, c) in enumerate(stats):
     x = M + i * (sw + 8)
     yc = y + 21
     bg = rect(s1, x, yc, sw, 46, WHITE, radius=7, line=c, lw=1.1, name=f"Profil {i+1} – cadre")
     acc = rect(s1, x, yc + 9, 3.5, 28, c, name=f"Profil {i+1} – accent")
-    if num:
-        runs = [[(num, {"font": TITLE_FONT, "size": 15, "color": c})], [(lab.strip(), {"size": 7.6})]]
-    else:
-        runs = [[("Moyenne d’âge de", {"size": 7.6})], [("48 ans", {"font": TITLE_FONT, "size": 15, "color": c})]]
-    t = text(s1, x + 10, yc, sw - 14, 46, runs, bold=True, color=INK, anchor=MSO_ANCHOR.MIDDLE,
-             spacing=1.0, name=f"Profil {i+1}")
+    runs = [[(num, {"color": c})] + ([(lab, {})] if lab else [])]
+    t = text(s1, x + 12, yc, sw - 18, 46, runs, size=9, bold=True, color=INK, anchor=MSO_ANCHOR.MIDDLE,
+             spacing=1.1, name=f"Profil {i+1}")
     group(s1, [bg, acc, t], f"Profil bénéficiaires {i+1}")
 
 text(s1, M, y + 78, CW, 50,
@@ -370,7 +395,7 @@ text(s1, M, y + 78, CW, 50,
 # PAGE 2
 # =====================================================================
 s2 = prs.slides.add_slide(blank)
-chrome(s2, 2)
+chrome_top(s2)
 picture(s2, f"{IMG}/logo_edlc.png", M, 26, w=110, name="Logo EDLC")
 
 y = 82
@@ -380,44 +405,37 @@ text(s2, M, y + 31, CW, 40,
      "frais de gestion ni de commission sur la gestion des solutions, des protections accessibles et des "
      "actions de prévention au plus près des entrepreneurs.", size=9, spacing=1.25, name="Levier – texte")
 
-# --- Impact concret : 4 cartes ---
-y = 161
+# --- Impact concret : tableau du Word ---
+y = 157
 sub_title(s2, M, y, "Quel est l’impact concret de votre soutien ?")
-impacts = [
-    ("5 000 €", YELLOW, BLUE, YELLOW_T,
-     [[("30 entrepreneurs", {"bold": True}), (" accèdent à l’assurance sociale et solidaire et sont accompagnés pendant 1 an", {})]]),
-    ("10 000 €", ORANGE, WHITE, ORANGE_T,
-     [[("60 entrepreneurs", {"bold": True}), (" accèdent à l’assurance sociale et solidaire ", {})], "ou",
-      [("44 entrepreneurs", {"bold": True}), (" sont formés à la gestion des risques liés à l’entrepreneuriat", {})]]),
-    ("20 000 €", CORAL, WHITE, CORAL_T,
-     [[("120 entrepreneurs", {"bold": True}), (" accèdent à l’assurance sociale et solidaire ", {})], "ou",
-      [("88 entrepreneurs", {"bold": True}), (" sont formés à la gestion des risques", {})]]),
-    ("50 000 €", BLUE, WHITE, BLUE_T,
-     [[("300 entrepreneurs", {"bold": True}), (" accèdent à l’assurance sociale et solidaire ", {})], "ou",
-      [("220 entrepreneurs", {"bold": True}), (" sont formés à la gestion des risques", {})]]),
+B = {"bold": True}
+impact_rows = [
+    [["DON"], ["Impact mesurable"]],
+    [["5 000 €"], [[("30 entrepreneurs", B), (" accèdent à l’assurance sociale et solidaire et sont accompagnés pendant 1 an", {})]]],
+    [["10 000 €"], [[("60 entrepreneurs", B), (" accèdent à l’assurance sociale et solidaire ", {})], "ou",
+                    [("44 entrepreneurs", B), (" sont formés à la gestion des risques liés à l’entrepreneuriat", {})]]],
+    [["20 000 €"], [[("120 entrepreneurs", B), (" accèdent à l’assurance sociale et solidaire ", {})], "ou",
+                    [("88 entrepreneurs", B), (" sont formés à la gestion des risques", {})]]],
+    [["50 000 €"], [[("300 entrepreneurs", B), (" accèdent à l’assurance sociale et solidaire ", {})], "ou",
+                    [("220 entrepreneurs", B), (" sont formés à la gestion des risques", {})]]],
 ]
-gap = 9
-cw4 = (CW - 3 * gap) / 4
-yc = y + 22
-ch = 164
-for i, (amt, c, fg, t_, body) in enumerate(impacts):
-    x = M + i * (cw4 + gap)
-    rect(s2, x, yc, cw4, ch, t_, radius=9, line=c, lw=1, name=f"Carte don {amt} – fond")
-    rect(s2, x, yc, cw4, 46, c, radius=9, name=f"Carte don {amt} – bandeau")
-    rect(s2, x, yc + 30, cw4, 16, c, name=f"Carte don {amt} – bandeau (raccord)")
-    text(s2, x + 10, yc + 7, cw4 - 20, 10, "DON", size=6.8, bold=True, color=fg, spc=1.2, name=f"Carte don {amt} – libellé")
-    text(s2, x + 10, yc + 17, cw4 - 20, 24, amt, size=17, font=TITLE_FONT, bold=True, color=fg, spacing=1.0,
-         name=f"Carte don {amt} – montant")
-    text(s2, x + 10, yc + 54, cw4 - 20, 10, "IMPACT MESURABLE", size=6.3, bold=True,
-         color=(ORANGE if c == YELLOW else c), spc=1.0, name=f"Carte don {amt} – libellé impact")
-    paras = []
-    for p in body:
-        if p == "ou":
-            paras.append([("ou", {"bold": True, "italic": True, "color": (ORANGE if c == YELLOW else c)})])
-        else:
-            paras.append(p)
-    text(s2, x + 10, yc + 67, cw4 - 16, ch - 70, paras, size=7.8, color=INK, spacing=1.15, after=3,
-         name=f"Carte don {amt} – impact")
+DON_STYLE = [None, (YELLOW, BLUE), (ORANGE, WHITE), (CORAL, WHITE), (BLUE, WHITE)]
+TINTS = [None, YELLOW_T, ORANGE_T, CORAL_T, BLUE_T]
+
+
+def impact_style(r, j):
+    if r == 0:
+        return (BLUE, WHITE, 8, True, PP_ALIGN.CENTER)
+    if j == 0:
+        bg, fg = DON_STYLE[r]
+        return (bg, fg, 11, True, PP_ALIGN.CENTER)
+    return (TINTS[r], INK, 8, False, PP_ALIGN.CENTER)
+
+
+yc = y + 20
+impact_h = [20, 24, 45, 45, 45]
+styled_table(s2, M, yc, [120, CW - 120], impact_h, impact_rows, impact_style, "Tableau impact du don")
+ch = sum(impact_h)
 
 # --- Coût net ---
 y = yc + ch + 14
@@ -506,34 +524,30 @@ rect(s2, M, cy, CW, chh, BLUE, radius=12, name="Contact – fond bleu")
 oval(s2, W - M - 128, cy + chh - 120, 112, RGBColor(0x33, 0x50, 0xA3), name="Décor – cercle contact")
 picture(s2, f"{IMG}/interlocutrice.png", W - M - 132, cy + chh - 112, w=118, name="Illustration – interlocutrice")
 cx = M + 18
-text(s2, cx, cy + 14, 360, 24, "Engageons-nous ensemble", size=17, font=TITLE_FONT, bold=True, color=WHITE,
+text(s2, cx, cy + 12, 360, 24, "Engageons-nous ensemble", size=17, font=TITLE_FONT, bold=True, color=WHITE,
      spacing=1.0, name="Contact – titre")
-text(s2, cx, cy + 42, 400, 26,
+text(s2, cx, cy + 40, 400, 36,
      [[("Pour toute information, n’hésitez pas à contacter ", {}),
-       ("Claire BENISTI - Déléguée Générale", {"bold": True}), (" :", {})]],
-     size=8.8, color=WHITE, spacing=1.2, name="Contact – texte")
-icon_mail(s2, cx, cy + 75, 11, YELLOW)
-text(s2, cx + 17, cy + 72, 330, 13,
-     [[("claire.benisti@entrepreneursdelacite.org",
+       ("Claire BENISTI - Déléguée Générale", {"bold": True}), (" : ", {}),
+       ("claire.benisti@entrepreneursdelacite.org",
         {"link": "mailto:claire.benisti@entrepreneursdelacite.org", "color": YELLOW, "bold": True})]],
-     size=8.8, name="Contact – e-mail")
-hline(s2, cx, cy + 93, 340, RGBColor(0x5A, 0x70, 0xB5), 0.6, name="Contact – séparateur")
-icon_pin(s2, cx + 1, cy + 104, 8.5, YELLOW, BLUE)
-text(s2, cx + 17, cy + 101, 330, 28,
+     size=8.8, color=WHITE, spacing=1.35, name="Contact – texte")
+hline(s2, cx, cy + 82, 340, RGBColor(0x5A, 0x70, 0xB5), 0.6, name="Contact – séparateur")
+icon_pin(s2, cx + 1, cy + 93, 8.5, YELLOW, BLUE)
+text(s2, cx + 17, cy + 90, 330, 28,
      [[("Fondation Entrepreneurs de la Cité", {"bold": True})],
       "31 place Jules Grandclément — 69100 Villeurbanne"],
      size=8.4, color=WHITE, spacing=1.2, name="Contact – adresse")
-icon_web(s2, cx, cy + 133, 10, YELLOW)
-text(s2, cx + 17, cy + 132, 330, 13,
+icon_web(s2, cx, cy + 122, 10, YELLOW)
+text(s2, cx + 17, cy + 121, 330, 13,
      [[("www.entrepreneursdelacite.org", {"link": "https://www.entrepreneursdelacite.org", "color": WHITE})]],
      size=8.4, color=WHITE, name="Contact – site web")
-text(s2, cx, cy + 153, 350, 28,
+text(s2, cx, cy + 141, 350, 28,
      "Prenons contact pour construire un partenariat à la hauteur de vos engagements.",
      size=9.2, bold=True, color=YELLOW, spacing=1.15, name="Contact – accroche")
 
 for sl in prs.slides:
-    for el in sl.shapes._spTree.iter(qn("p:style")):
-        pass
+    chrome_bottom(sl)
     for el in list(sl.shapes._spTree.iter(qn("p:style"))):
         el.getparent().remove(el)
 prs.save(OUT)
