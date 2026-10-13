@@ -143,19 +143,6 @@ def picture(sl, path, x, y, w=None, h=None, name=None):
     return p, w, h
 
 
-def freeform(sl, pts, x, y, scale, fill, name=None):
-    fb = sl.shapes.build_freeform(Pt(x + pts[0][0] * scale), Pt(y + pts[0][1] * scale), scale=1.0)
-    fb.add_line_segments([(Pt(x + px * scale), Pt(y + py * scale)) for px, py in pts[1:]], close=True)
-    s = fb.convert_to_shape()
-    s.fill.solid()
-    s.fill.fore_color.rgb = fill
-    no_line(s)
-    s.shadow.inherit = False
-    if name:
-        s.name = name
-    return s
-
-
 def group(sl, shapes, name):
     g = sl.shapes.add_group_shape(shapes)
     g.name = name
@@ -188,70 +175,62 @@ def chrome(sl, page):
 
 
 # ---------- pictogrammes vectoriels (formes natives) ----------
-def shield_pts():
-    pts = [(0, 2), (8, 0), (16, 2), (16, 9)]
-    # bas arrondi du bouclier
-    import math
-    for i in range(1, 12):
-        t = i / 12
-        pts.append((16 - 8 * t, 9 + 9 * math.sin(t * math.pi / 2)))
-    pts.append((8, 18.5))
-    for i in range(11, 0, -1):
-        t = i / 12
-        pts.append((8 * t, 9 + 9 * math.sin(t * math.pi / 2)))
-    pts.append((0, 9))
-    return pts
-
-
-CHECK = [(4.2, 9.4), (6, 7.6), (7.4, 9.1), (11.6, 4.9), (13.4, 6.7), (7.4, 12.7)]
+def preset(sl, kind, x, y, w, h, fill=None, line=None, lw=0.9, name=None, rot=0):
+    sh = sl.shapes.add_shape(kind, Pt(x), Pt(y), Pt(w), Pt(h))
+    if fill is None:
+        sh.fill.background()
+    else:
+        sh.fill.solid(); sh.fill.fore_color.rgb = fill
+    if line is None:
+        no_line(sh)
+    else:
+        sh.line.color.rgb = line; sh.line.width = Pt(lw)
+    sh.rotation = rot
+    if name:
+        sh.name = name
+    return sh
 
 
 def icon_protect(sl, x, y, d, bg):
-    c = oval(sl, x, y, d, bg, name="Picto protéger – fond")
+    """Bouclier + coche (formes natives, non groupées pour rester vectorielles dans Canva)."""
+    oval(sl, x, y, d, bg, name="Picto protéger – fond")
     s = d / 30
-    sh = freeform(sl, shield_pts(), x + 7 * s, y + 5.5 * s, s, WHITE, name="Picto protéger – bouclier")
-    ck = freeform(sl, CHECK, x + 7 * s, y + 5.5 * s, s, bg, name="Picto protéger – coche")
-    return group(sl, [c, sh, ck], "Pictogramme PROTÉGER")
+    preset(sl, MSO_SHAPE.FLOWCHART_OFFPAGE_CONNECTOR, x + 8 * s, y + 6.5 * s, 14 * s, 17 * s, WHITE,
+           name="Picto protéger – bouclier")
+    # coche = deux barres arrondies pivotées
+    preset(sl, MSO_SHAPE.ROUNDED_RECTANGLE, x + 10.2 * s, y + 13.4 * s, 5 * s, 2.2 * s, bg, rot=45,
+           name="Picto protéger – coche (court)")
+    preset(sl, MSO_SHAPE.ROUNDED_RECTANGLE, x + 12.6 * s, y + 11.8 * s, 8.5 * s, 2.2 * s, bg, rot=-50,
+           name="Picto protéger – coche (long)")
 
 
 def icon_prevent(sl, x, y, d, bg, fg):
     """Ampoule = prévention / formation."""
-    c = oval(sl, x, y, d, bg, name="Picto prévenir – fond")
+    oval(sl, x, y, d, bg, name="Picto prévenir – fond")
     s = d / 30
-    bulb = oval(sl, x + 9 * s, y + 5 * s, 12 * s, fg, name="Picto prévenir – ampoule")
-    neck = rect(sl, x + 12 * s, y + 15.5 * s, 6 * s, 5 * s, fg, name="Picto prévenir – culot")
-    b1 = rect(sl, x + 12 * s, y + 21.3 * s, 6 * s, 1.4 * s, fg, radius=0.6 * s, name="Picto prévenir – trait 1")
-    b2 = rect(sl, x + 13 * s, y + 23.5 * s, 4 * s, 1.4 * s, fg, radius=0.6 * s, name="Picto prévenir – trait 2")
-    return group(sl, [c, bulb, neck, b1, b2], "Pictogramme PRÉVENIR")
+    oval(sl, x + 9 * s, y + 5 * s, 12 * s, fg, name="Picto prévenir – ampoule")
+    rect(sl, x + 12 * s, y + 15.5 * s, 6 * s, 5 * s, fg, name="Picto prévenir – culot")
+    rect(sl, x + 12 * s, y + 21.3 * s, 6 * s, 1.4 * s, fg, name="Picto prévenir – trait 1")
+    rect(sl, x + 13 * s, y + 23.5 * s, 4 * s, 1.4 * s, fg, name="Picto prévenir – trait 2")
 
 
 def icon_mail(sl, x, y, w, color):
     h = w * 0.68
-    env = rect(sl, x, y, w, h, None, line=color, lw=0.9, name="Picto e-mail – enveloppe")
-    flap = sl.shapes.build_freeform(Pt(x), Pt(y), scale=1.0)
-    flap.add_line_segments([(Pt(x + w / 2), Pt(y + h * 0.55)), (Pt(x + w), Pt(y))], close=False)
-    f = flap.convert_to_shape()
-    f.fill.background()
-    f.line.color.rgb = color
-    f.line.width = Pt(0.9)
-    f.name = "Picto e-mail – rabat"
-    return group(sl, [env, f], "Pictogramme e-mail")
+    rect(sl, x, y, w, h, None, line=color, lw=0.9, name="Picto e-mail – enveloppe")
+    preset(sl, MSO_SHAPE.FLOWCHART_MERGE, x, y, w, h * 0.55, None, line=color, name="Picto e-mail – rabat")
 
 
 def icon_pin(sl, x, y, d, color, hole):
-    c = oval(sl, x, y, d, color, name="Picto adresse – tête")
-    tri = freeform(sl, [(0.12, 0.62), (0.88, 0.62), (0.5, 1.35)], x, y, d, color, name="Picto adresse – pointe")
-    h = oval(sl, x + d * 0.3, y + d * 0.3, d * 0.4, hole, name="Picto adresse – centre")
-    return group(sl, [c, tri, h], "Pictogramme adresse")
+    preset(sl, MSO_SHAPE.FLOWCHART_MERGE, x + d * 0.14, y + d * 0.55, d * 0.72, d * 0.75, color,
+           name="Picto adresse – pointe")
+    oval(sl, x, y, d, color, name="Picto adresse – tête")
+    oval(sl, x + d * 0.3, y + d * 0.3, d * 0.4, hole, name="Picto adresse – centre")
 
 
 def icon_web(sl, x, y, d, color):
-    c = sl.shapes.add_shape(MSO_SHAPE.OVAL, Pt(x), Pt(y), Pt(d), Pt(d))
-    c.fill.background(); c.line.color.rgb = color; c.line.width = Pt(0.9); c.name = "Picto web – globe"
-    e = sl.shapes.add_shape(MSO_SHAPE.OVAL, Pt(x + d * 0.3), Pt(y), Pt(d * 0.4), Pt(d))
-    e.fill.background(); e.line.color.rgb = color; e.line.width = Pt(0.9); e.name = "Picto web – méridien"
-    l = hline(sl, x, y + d / 2, d, color, 0.9, name="Picto web – équateur")
-    return group(sl, [c, e, l], "Pictogramme site web")
+    preset(sl, MSO_SHAPE.OVAL, x, y, d, d, None, line=color, name="Picto web – globe")
+    preset(sl, MSO_SHAPE.OVAL, x + d * 0.3, y, d * 0.4, d, None, line=color, name="Picto web – méridien")
+    hline(sl, x, y + d / 2, d, color, 0.9, name="Picto web – équateur")
 
 
 # =====================================================================
@@ -371,17 +350,17 @@ sw = (CW - 3 * 8) / 4
 for i, (num, lab, c) in enumerate(stats):
     x = M + i * (sw + 8)
     yc = y + 21
-    bg = rect(s1, x, yc, sw, 40, WHITE, radius=7, line=c, lw=1.1, name=f"Profil {i+1} – cadre")
-    acc = rect(s1, x, yc + 8, 3.5, 24, c, name=f"Profil {i+1} – accent")
+    bg = rect(s1, x, yc, sw, 46, WHITE, radius=7, line=c, lw=1.1, name=f"Profil {i+1} – cadre")
+    acc = rect(s1, x, yc + 9, 3.5, 28, c, name=f"Profil {i+1} – accent")
     if num:
-        runs = [[(num, {"font": TITLE_FONT, "size": 16, "color": c}), (lab, {"size": 7.6})]]
+        runs = [[(num, {"font": TITLE_FONT, "size": 15, "color": c})], [(lab.strip(), {"size": 7.6})]]
     else:
         runs = [[("Moyenne d’âge de", {"size": 7.6})], [("48 ans", {"font": TITLE_FONT, "size": 15, "color": c})]]
-    t = text(s1, x + 10, yc, sw - 16, 40, runs, bold=True, color=INK, anchor=MSO_ANCHOR.MIDDLE,
+    t = text(s1, x + 10, yc, sw - 14, 46, runs, bold=True, color=INK, anchor=MSO_ANCHOR.MIDDLE,
              spacing=1.0, name=f"Profil {i+1}")
     group(s1, [bg, acc, t], f"Profil bénéficiaires {i+1}")
 
-text(s1, M, y + 72, CW, 50,
+text(s1, M, y + 78, CW, 50,
      "EDLC s’appuie sur un écosystème engagé : France Assureurs, Bpifrance (Cap Créa), l’Agefiph, des réseaux "
      "d’accompagnement comme l’Adie, France Active, BGE ou France Travail, ainsi que des assureurs partenaires. "
      "Cette coopération réunit les compétences nécessaires autour d’un objectif commun : pérenniser les "
