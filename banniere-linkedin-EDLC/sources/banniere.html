@@ -1,0 +1,37 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Bannière LinkedIn EDLC</title><style>
+@font-face{font-family:"Open Sans";font-weight:400;src:url(open-sans-latin-400-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
+@page{size:1584px 396px;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1584px;height:396px;overflow:hidden;background:#FFF6EE}
+body{font-family:"Open Sans",sans-serif;color:#212322;position:relative}
+.a{position:absolute}
+/* décor : pictogramme géant en filigrane (zone masquée par la photo de profil) */
+.filigrane{left:-70px;top:-60px;height:560px;opacity:.07}
+/* bloc central (zone sûre desktop + mobile) */
+.centre{left:440px;top:70px;width:800px}
+.centre .logo{height:132px;display:block}
+.titre{margin-top:30px;font-weight:800;font-size:35px;line-height:1.15;letter-spacing:-.3px;white-space:nowrap}
+.titre em{font-style:normal;color:#E53D34}
+.sous{margin-top:12px;font-weight:600;font-size:19px;color:#5A5C5B}
+/* panneau droit */
+.panneau{left:1250px;top:-200px;width:800px;height:800px;border-radius:50%;background:#E53D34}
+.badge{left:1318px;top:78px;width:178px;height:178px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-weight:800;font-size:19px;line-height:1.2;color:#E53D34;transform:rotate(-8deg);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.badge::before{content:"";position:absolute;inset:9px;border:2px dashed #E53D34;border-radius:50%;opacity:.55}
+.url{left:1290px;top:290px;width:240px;text-align:center;color:#fff;font-weight:700;font-size:17px;letter-spacing:.2px}
+.etincelle{left:1490px;top:58px}
+</style></head><body>
+<img class="a filigrane" src="pictogramme_edlc.png" alt="">
+<div class="a centre">
+  <img class="logo" src="logo_edlc.png" alt="Entrepreneurs de la Cité – La micro-assurance pour entreprendre">
+  <p class="titre">Protéger celles et ceux qui <em>osent se lancer</em></p>
+  <p class="sous">Créateurs d’entreprise exclus de l’emploi · Depuis 2007</p>
+</div>
+<div class="a panneau"></div>
+<div class="a badge">Reconnue<br>d’utilité<br>publique</div>
+<svg class="a etincelle" width="40" height="40" viewBox="0 0 40 40" fill="#fff"><rect x="17" y="0" width="6" height="16" rx="3" transform="rotate(20 20 20)"/><rect x="28" y="16" width="6" height="14" rx="3" transform="rotate(70 31 23)"/></svg>
+<div class="a url">entrepreneursdelacite.org</div>
+</body></html>
