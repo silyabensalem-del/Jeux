@@ -3,27 +3,28 @@
 @font-face{font-family:"Open Sans";font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
-:root{--bleu:#26408F;--bleu2:#34509E;--creme:#F3E2C0;--rouge:#EF3F34;--orange:#F89410;--jaune:#FFCB1F}
+/* palette : bleu #26408F, rouge clair #FDE8E6 (écritures), touche de rouge #EF3F34 */
+:root{--bleu:#26408F;--clair:#FDE8E6;--rouge:#EF3F34}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1080px;overflow:hidden;background:var(--bleu)}
-body{font-family:"Open Sans",sans-serif;color:#fff;position:relative}
+body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
 .scene,.full,canvas,svg{position:absolute;left:0;top:0;width:1080px;height:1080px}
 .c{position:absolute;left:0;width:1080px;text-align:center;white-space:nowrap}
 .m{overflow:hidden;display:block}            /* masque pour les révélations de lignes */
 .m>span{display:inline-block;will-change:transform}
-.creme{color:var(--creme)}
+.clair{color:var(--clair)}
 /* Scène A : compteur */
 #a-depuis{top:300px;font-size:36px;font-weight:700;letter-spacing:10px}
 #a-annee{top:360px;font-size:250px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
-#a-ligne{position:absolute;left:240px;top:700px;width:600px;height:4px;background:var(--bleu2)}
-#a-ligne i{position:absolute;left:0;top:0;height:4px;width:600px;background:var(--orange);transform-origin:0 0}
+#a-ligne{position:absolute;left:240px;top:700px;width:600px;height:4px;background:rgba(253,232,230,.2)}
+#a-ligne i{position:absolute;left:0;top:0;height:4px;width:600px;background:var(--rouge);transform-origin:0 0}
 #a-tag{top:745px;font-size:30px;font-weight:600}
 /* Scène B : le 20 */
 #b-vingt{font-family:"Open Sans";font-weight:800;font-size:640px;letter-spacing:14px}
 #b-ans{position:absolute;left:770px;top:180px;width:200px;height:200px;border-radius:50%;background:var(--rouge);
-  color:#fff;font-size:62px;font-weight:800;display:flex;align-items:center;justify-content:center;letter-spacing:2px}
-/* Scène C : save the date sur fond crème */
-#scC{background:var(--creme);color:var(--bleu)}
+  color:var(--clair);font-size:62px;font-weight:800;display:flex;align-items:center;justify-content:center;letter-spacing:2px}
+/* Scène C : save the date sur fond rouge clair */
+#scC{background:var(--clair);color:var(--bleu)}
 #c-l1{top:250px;font-size:150px;font-weight:800;line-height:1.05}
 #c-l2{top:410px;font-size:150px;font-weight:800;line-height:1.05}
 #c-bar{position:absolute;left:390px;top:612px;width:300px;height:10px;background:var(--rouge);transform-origin:0 50%}
@@ -42,25 +43,25 @@ body{font-family:"Open Sans",sans-serif;color:#fff;position:relative}
 #e-vingt{font-family:"Open Sans";font-weight:800;font-size:560px;letter-spacing:12px}
 #e-t1,#e-t2{font-size:56px;font-weight:800;line-height:1.1}
 #e-t1{top:560px}#e-t2{top:622px}
-#e-bar{position:absolute;left:510px;top:722px;width:60px;height:5px;background:var(--creme)}
+#e-bar{position:absolute;left:510px;top:722px;width:60px;height:5px;background:var(--clair)}
 #e-date{top:748px;font-size:36px;font-weight:700}
 #e-lieu1{top:808px;font-size:24px}
 #e-lieu2{top:842px;font-size:24px}
-#e-card{position:absolute;left:375px;top:900px;width:330px;height:140px;background:#fff;border-radius:16px}
+#e-card{position:absolute;left:375px;top:900px;width:330px;height:140px;background:var(--clair);border-radius:16px}
 #e-card div{position:absolute;top:18px;left:0;width:330px;text-align:center;font-size:15px;font-weight:700;color:var(--bleu);letter-spacing:.3px}
 #e-card img{position:absolute;left:30px;top:50px;width:270px}
 </style></head><body>
 <canvas id="fond" width="1080" height="1080"></canvas>
 
 <div class="scene" id="scA">
-  <div class="c creme" id="a-depuis">DE 2007 À 2027</div>
-  <div class="c creme" id="a-annee">2007</div>
+  <div class="c clair" id="a-depuis">DE 2007 À 2027</div>
+  <div class="c clair" id="a-annee">2007</div>
   <div id="a-ligne"><i></i></div>
   <div class="c" id="a-tag"><span class="m"><span>La micro-assurance pour entreprendre</span></span></div>
 </div>
 
 <div class="scene" id="scB">
-  <svg viewBox="0 0 1080 1080"><g id="b-g"><text id="b-vingt" x="540" y="770" text-anchor="middle" fill="#34509E" stroke="#F3E2C0" stroke-width="8" stroke-linejoin="round">20</text></g></svg>
+  <svg viewBox="0 0 1080 1080"><g id="b-g"><text id="b-vingt" x="540" y="770" text-anchor="middle" fill="#FDE8E6" fill-opacity="0" stroke="#FDE8E6" stroke-width="8" stroke-linejoin="round">20</text></g></svg>
   <div id="b-ans">ANS</div>
 </div>
 
@@ -73,19 +74,19 @@ body{font-family:"Open Sans",sans-serif;color:#fff;position:relative}
 </div>
 
 <div class="scene" id="scD">
-  <div class="c creme" id="d-mardi">MARDI</div>
-  <div class="c creme" id="d-15">15</div>
-  <div class="c creme" id="d-juin">JUIN 2027</div>
+  <div class="c clair" id="d-mardi">MARDI</div>
+  <div class="c clair" id="d-15">15</div>
+  <div class="c clair" id="d-juin">JUIN 2027</div>
   <div id="d-heure">18h30</div>
   <div class="c" id="d-lieu1">Le Philanthro-Lab</div>
   <div class="c" id="d-lieu2">13-15 rue de la Bûcherie, 75005 Paris</div>
 </div>
 
 <div class="scene" id="scE">
-  <svg viewBox="0 0 1080 1080"><g id="e-g"><text id="e-vingt" x="540" y="540" text-anchor="middle" fill="#34509E" stroke="#F3E2C0" stroke-width="7" stroke-linejoin="round">20</text></g></svg>
-  <div class="c creme" id="e-std">SAVE THE DATE</div>
-  <div class="c creme" id="e-t1">20 ANS DES ENTREPRENEURS</div>
-  <div class="c creme" id="e-t2">DE LA CITÉ</div>
+  <svg viewBox="0 0 1080 1080"><g id="e-g"><text id="e-vingt" x="540" y="540" text-anchor="middle" fill="#FDE8E6" fill-opacity="0" stroke="#FDE8E6" stroke-width="7" stroke-linejoin="round">20</text></g></svg>
+  <div class="c clair" id="e-std">SAVE THE DATE</div>
+  <div class="c clair" id="e-t1">20 ANS DES ENTREPRENEURS</div>
+  <div class="c clair" id="e-t2">DE LA CITÉ</div>
   <div id="e-bar"></div>
   <div class="c" id="e-date">Mardi 15 juin 2027 · 18h30</div>
   <div class="c" id="e-lieu1">Le Philanthro-Lab</div>
@@ -95,12 +96,12 @@ body{font-family:"Open Sans",sans-serif;color:#fff;position:relative}
 
 <canvas id="confettis" width="1080" height="1080"></canvas>
 <div class="full" id="w1" style="background:var(--rouge)"></div>
-<div class="full" id="w2" style="background:var(--creme)"></div>
+<div class="full" id="w2" style="background:var(--clair)"></div>
 
 <script>
 // render(t) dessine l'image exacte à t secondes (export image par image) ; ouverte seule, la page joue en boucle.
 const DUR = 20;
-const COL = { bleu:'#26408F', bleu2:'#34509E', creme:'#F3E2C0', rouge:'#EF3F34', orange:'#F89410', jaune:'#FFCB1F' };
+const COL = { bleu:'#26408F', clair:'#FDE8E6', rouge:'#EF3F34' };
 const clamp = x => Math.max(0, Math.min(1, x));
 const out3 = x => 1 - Math.pow(1 - clamp(x), 3);
 const inout = x => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
@@ -128,7 +129,7 @@ function wipes(t, a) { wipe($('w1'), t, a - .08); wipe($('w2'), t, a); }
 // générateur pseudo-aléatoire à graine : même vidéo à chaque export
 function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let r = Math.imul(seed ^ seed >>> 15, 1 | seed);
   r = r + Math.imul(r ^ r >>> 7, 61 | r) ^ r; return ((r ^ r >>> 14) >>> 0) / 4294967296; }; }
-const PAL = [COL.rouge, COL.orange, COL.jaune, COL.creme, '#ffffff'];
+const PAL = [COL.rouge, COL.clair, COL.rouge, COL.clair, COL.clair];
 function makeBurst(seed, n, cx, cy) { const r = rng(seed); return Array.from({length:n}, () => {
   const ang = r() * Math.PI * 2, sp = 500 + r() * 900;
   return { x: cx, y: cy, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 350, c: PAL[r()*5|0], s: 10 + r()*16,
@@ -156,7 +157,7 @@ function drawBurst(g, list, dt) {
 function drawBackground(t, bg) {
   const g = $('fond').getContext('2d'); g.fillStyle = bg; g.fillRect(0, 0, 1080, 1080);
   // grands anneaux qui tournent lentement
-  g.lineWidth = 2; g.strokeStyle = bg === COL.creme ? 'rgba(38,64,143,.10)' : 'rgba(243,226,192,.08)';
+  g.lineWidth = 2; g.strokeStyle = bg === COL.clair ? 'rgba(38,64,143,.10)' : 'rgba(253,232,230,.08)';
   for (let i = 0; i < 4; i++) {
     const r = 260 + i * 150, a0 = t * (.12 + i * .05) * (i % 2 ? -1 : 1);
     g.setLineDash([r * .9, r * .35]); g.beginPath(); g.arc(540, 540, r, a0, a0 + Math.PI * 2); g.stroke();
@@ -172,7 +173,7 @@ function drawBackground(t, bg) {
 
 function render(t) {
   for (const k in SC) show('sc' + k, t, SC[k]);
-  drawBackground(t, (t >= SC.C[0] && t < SC.C[1]) ? COL.creme : COL.bleu);
+  drawBackground(t, (t >= SC.C[0] && t < SC.C[1]) ? COL.clair : COL.bleu);
 
   // ── Scène A : « Depuis 2007 » → 2027
   rise($('a-depuis'), t, .2, .9, -25);
@@ -187,13 +188,13 @@ function render(t) {
   // ── Scène B : le « 20 » se dessine, se remplit, explosion de confettis, pastille « ANS »
   const v = $('b-vingt'), d = out3(p(t, 4.1, 5.9));
   v.style.strokeDasharray = LEN; v.style.strokeDashoffset = LEN * (1 - d);
-  v.style.fillOpacity = out3(p(t, 5.6, 6.1));
+  v.style.fillOpacity = .14 * out3(p(t, 5.6, 6.1));
   const zb = 0.9 + .1 * out3(p(t, 4, 6.2)) + .03 * clamp(p(t, 6.2, 8.2));
   $('b-g').setAttribute('transform', `translate(540 540) scale(${zb}) translate(-540 -540)`);
   const kb = p(t, 6.0, 6.6); $('b-ans').style.opacity = clamp(kb * 3);
   $('b-ans').style.transform = `scale(${back(kb)}) rotate(${lerp(-40, -12, out3(kb))}deg)`;
 
-  // ── Scène C : SAVE THE DATE (fond crème)
+  // ── Scène C : SAVE THE DATE (fond rouge clair)
   mask($('c-l1'), t, 8.6, 9.2); mask($('c-l2'), t, 8.85, 9.45);
   $('c-bar').style.transform = `scaleX(${out3(p(t, 9.5, 10.1))})`;
   mask($('c-t1'), t, 9.9, 10.5); mask($('c-t2'), t, 10.1, 10.7);
@@ -207,7 +208,7 @@ function render(t) {
 
   // ── Scène E : récapitulatif
   const e = $('e-vingt'), de = out3(p(t, 16.3, 17.3));
-  e.style.strokeDasharray = LEN; e.style.strokeDashoffset = LEN * (1 - de); e.style.fillOpacity = out3(p(t, 16.9, 17.4));
+  e.style.strokeDasharray = LEN; e.style.strokeDashoffset = LEN * (1 - de); e.style.fillOpacity = .14 * out3(p(t, 16.9, 17.4));
   const ze = .95 + .05 * out3(p(t, 16.2, 17.4));
   $('e-g').setAttribute('transform', `translate(540 330) scale(${ze}) translate(-540 -330)`);
   rise($('e-std'), t, 16.5, 17.1, -30);
@@ -223,7 +224,7 @@ function render(t) {
   // ── Volets de transition
   wipe2(t);
 }
-// deux volets (rouge puis crème) pour chaque changement de scène
+// deux volets (rouge puis rouge clair) pour chaque changement de scène
 function wipe2(t) {
   const starts = [SC.B[1], SC.C[1], SC.D[1]].map(x => x - .45);
   const a = [SC.A[1] - .45, ...starts].find(s => t >= s - .1 && t <= s + .95);
