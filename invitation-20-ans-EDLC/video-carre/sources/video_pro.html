@@ -1,0 +1,200 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Vidéo 20 ans EDLC</title><style>
+@font-face{font-family:"Open Sans";font-weight:400;src:url(open-sans-latin-400-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
+/* palette : bleu #26408F, rouge clair #FDE8E6 (écritures), touche de rouge #EF3F34 */
+:root{--bleu:#26408F;--clair:#FDE8E6;--rouge:#EF3F34}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden;background:var(--bleu)}
+body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
+.scene{position:absolute;left:0;top:0;width:1080px;height:1080px}
+.ln{position:absolute;overflow:hidden;white-space:nowrap;line-height:1.12;padding-top:.06em}
+.ch{display:inline-block}
+.rule{position:absolute;height:4px;background:var(--rouge);transform:scaleX(0)}
+/* repères de coin */
+.k{position:absolute;top:52px;font-size:15px;font-weight:700;letter-spacing:3px}
+#k-tl{left:58px}#k-tr{right:55px}
+/* compteur à rouleaux */
+#odo{position:absolute;top:355px}
+.col{position:absolute;top:0;overflow:hidden}
+.strip{position:absolute;left:0;top:0;text-align:center;font-weight:800}
+.fw{position:absolute;left:0;top:0;right:0;bottom:0}
+.outl{color:transparent;-webkit-text-stroke:2.6px var(--clair);opacity:0}
+#a-rule{left:300px;top:600px;width:480px;height:3px;transform-origin:0 50%}
+#b-ans{position:absolute;left:775px;top:262px;width:160px;height:160px;border-radius:50%;background:var(--rouge);
+  font-size:44px;font-weight:800;letter-spacing:1px;display:flex;align-items:center;justify-content:center;transform:scale(0)}
+#b-eng{left:0;width:1080px;text-align:center;top:767px;font-size:50px;font-weight:800;letter-spacing:12px;text-indent:12px}
+/* SAVE THE DATE */
+.big{font-size:290px;font-weight:800;letter-spacing:-6px;left:78px}
+#c1{top:83px}#c2{top:345px}#c3{top:607px}
+#c2 .ch{color:transparent;-webkit-text-stroke:5px var(--clair)}
+#c-rule{left:96px;top:934px;width:888px;transform-origin:0 50%}
+/* la date */
+#scD .wrap{position:absolute;left:0;top:30px;width:1080px;height:1080px}
+#d15{left:70px;top:127px;font-size:420px;font-weight:800;letter-spacing:-12px}
+#dm{left:610px;top:236px;font-size:46px;font-weight:800;letter-spacing:8px}
+#dj{left:610px;top:299px;font-size:66px;font-weight:800;letter-spacing:1px}
+#d-rule{left:612px;top:425px;width:378px;transform-origin:0 50%}
+#dh{left:610px;top:503px;font-size:46px;font-weight:700}
+#d-hair{position:absolute;left:84px;top:650px;width:906px;height:1.5px;background:rgba(253,232,230,.35);transform-origin:0 50%;transform:scaleX(0)}
+#dl1{left:84px;top:681px;font-size:32px;font-weight:800;letter-spacing:3px}
+#dl2{left:84px;top:734px;font-size:28px;font-weight:400}
+/* signature */
+#e-org{left:0;width:1080px;text-align:center;top:404px;font-size:20px;font-weight:700;letter-spacing:6px;text-indent:6px}
+#e-logo{position:absolute;left:230px;top:448px;width:620px;opacity:0}
+#e-rule{left:505px;top:672px;width:70px;transform-origin:50% 50%}
+/* vignettage léger */
+#vig{position:absolute;left:0;top:0;width:1080px;height:1080px;pointer-events:none;
+  background:radial-gradient(circle at 50% 46%,rgba(12,22,64,0) 52%,rgba(12,22,64,.32) 100%)}
+</style></head><body>
+
+<div class="scene" id="scAB">
+  <div id="odo"></div>
+  <div class="rule" id="a-rule"></div>
+  <div id="b-ans">ANS</div>
+  <div class="ln" id="b-eng">D’ENGAGEMENT</div>
+</div>
+
+<div class="scene" id="scC">
+  <div class="ln big" id="c1">SAVE</div>
+  <div class="ln big" id="c2">THE</div>
+  <div class="ln big" id="c3">DATE</div>
+  <div class="rule" id="c-rule"></div>
+</div>
+
+<div class="scene" id="scD"><div class="wrap">
+  <div class="ln" id="d15">15</div>
+  <div class="ln" id="dm">MARDI</div>
+  <div class="ln" id="dj">JUIN 2027</div>
+  <div class="rule" id="d-rule"></div>
+  <div class="ln" id="dh">18h30 – 23h</div>
+  <div id="d-hair"></div>
+  <div class="ln" id="dl1">LE PHILANTHRO-LAB</div>
+  <div class="ln" id="dl2">13-15 rue de la Bûcherie, 75005 Paris</div>
+</div></div>
+
+<div class="scene" id="scE">
+  <div class="ln" id="e-org">ORGANISÉE PAR LA FONDATION</div>
+  <img id="e-logo" src="logo_edlc_clair.png" alt="Entrepreneurs de la Cité">
+  <div class="rule" id="e-rule"></div>
+</div>
+
+<div class="ln k" id="k-tl">ENTREPRENEURS DE LA CITÉ</div>
+<div class="ln k" id="k-tr">SAVE THE DATE</div>
+<div id="vig"></div>
+
+<script>
+// render(t) dessine l'image exacte à t secondes ; ouverte seule dans un navigateur, la page joue en boucle.
+const DUR = 20;
+const clamp = x => Math.max(0, Math.min(1, x));
+const p = (t, a, b) => (t - a) / (b - a);
+const lerp = (a, b, k) => a + (b - a) * k;
+const oExpo = x => { x = clamp(x); return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x); };
+const iCub = x => { x = clamp(x); return x * x * x; };
+const ioCub = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const ioQuart = x => { x = clamp(x); return x < .5 ? 8 * x ** 4 : 1 - Math.pow(-2 * x + 2, 4) / 2; };
+const oBack = x => { x = clamp(x); const c = 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const iBack = x => { x = clamp(x); const c = 1.6; return (c + 1) * x ** 3 - c * x * x; };
+const $ = id => document.getElementById(id);
+const SC = { AB: [0, 7.6], C: [7.6, 11.55], D: [11.55, 15.75], E: [15.75, DUR] };
+
+// découpe un texte en lettres masquées
+function split(el) { const s = el.textContent; el.textContent = '';
+  el.chars = [...s].map(c => { const sp = document.createElement('span'); sp.className = 'ch';
+    sp.innerHTML = c === ' ' ? '&nbsp;' : c; el.appendChild(sp); return sp; }); }
+// entrée lettre par lettre (montée depuis le masque) puis sortie vers le haut
+function letters(el, t, a, out, st = .035, d = .85) {
+  el.chars.forEach((c, i) => {
+    const k = oExpo(p(t, a + i * st, a + i * st + d));
+    const o = out == null ? 0 : iCub(p(t, out + i * st * .5, out + i * st * .5 + .5));
+    c.style.transform = `translateY(${(1 - k) * 112 - o * 112}%)`;
+  });
+}
+// filet qui se trace puis se retire vers la droite
+function rule(el, t, a, d, out) {
+  const k = oExpo(p(t, a, a + d)), o = out == null ? 0 : ioCub(p(t, out, out + .5));
+  if (o > 0) { el.style.transformOrigin = '100% 50%'; el.style.transform = `scaleX(${1 - o})`; }
+  else { el.style.transformOrigin = ''; el.style.transform = `scaleX(${k})`; }
+}
+
+// ── compteur à rouleaux : 4 colonnes, chaque colonne = bande 0-9 (+0) ; remplissage + contour superposés
+const F = 230, H = 230; let W = 0; const cols = [];
+function buildOdo() {
+  const m = document.createElement('span'); m.style.cssText = `font:800 ${F}px "Open Sans";position:absolute;visibility:hidden`;
+  m.textContent = '0'; document.body.appendChild(m); W = Math.ceil(m.getBoundingClientRect().width) + 4; m.remove();
+  const odo = $('odo'); odo.style.left = (540 - 2 * W) + 'px'; odo.style.width = 4 * W + 'px'; odo.style.height = H + 'px';
+  odo.style.transformOrigin = `${2 * W}px ${H / 2}px`;
+  const cells = [...'01234567890'].map(d => `<div style="height:${H}px;line-height:${H}px;font-size:${F}px">${d}</div>`).join('');
+  for (let i = 0; i < 4; i++) {
+    const c = document.createElement('div'); c.className = 'col';
+    c.style.cssText = `left:${i * W}px;width:${W}px;height:${H}px`;
+    c.innerHTML = `<div class="strip outl" style="width:${W}px">${cells}</div><div class="fw"><div class="strip" style="width:${W}px">${cells}</div></div>`;
+    odo.appendChild(c); cols.push({ el: c, strips: c.querySelectorAll('.strip'), fw: c.querySelector('.fw'), outl: c.querySelector('.outl') });
+  }
+}
+function setDigit(i, v) { for (const s of cols[i].strips) s.style.transform = `translateY(${-v * H}px)`; }
+
+function render(t) {
+  for (const k in SC) $('sc' + k).style.visibility = (t >= SC[k][0] && t < SC[k][1]) ? 'visible' : 'hidden';
+
+  // repères de coin
+  letters($('k-tl'), t, .3, 15.15, .012, .9); letters($('k-tr'), t, .4, 15.15, .012, .9);
+
+  // ── 1. 2007 → 2027 sur rouleaux, puis zoom raccord sur le « 20 »
+  const ka = ioQuart(p(t, .6, 2.9)), y = 2007 + 20 * ka;
+  const u = y % 10, tens = Math.floor(y / 10) % 10 + clamp(u - 9);
+  setDigit(0, 2); setDigit(1, 0); setDigit(2, tens); setDigit(3, u);
+  const ent = oExpo(p(t, .1, 1.1));
+  $('odo').style.opacity = ent;
+  $('a-rule').style.transform = `scaleX(${ka})`; $('a-rule').style.opacity = 1 - clamp(p(t, 3.0, 3.35));
+  // les deux derniers chiffres tombent, le « 20 » se centre et grossit
+  const kd = iCub(p(t, 3.0, 3.4));
+  for (const i of [2, 3]) { cols[i].el.style.opacity = 1 - kd; cols[i].el.style.transform = `translateY(${kd * 25}%)`; }
+  const kz = ioCub(p(t, 3.15, 4.35)), push = .05 * clamp(p(t, 4.35, 7.0));
+  const S = lerp(1, 2.6, kz) * (1 + push) * (1 + .06 * iCub(p(t, 6.95, 7.5)));
+  $('odo').style.transform = `translateY(${25 * kz + (1 - ent) * 30}px) scale(${S}) translateX(${W * kz}px)`;
+  // le remplissage se vide de haut en bas : il ne reste que le contour
+  const kv = ioCub(p(t, 4.45, 5.45));
+  for (const i of [0, 1]) { cols[i].fw.style.clipPath = `inset(${kv * 100}% 0 0 0)`; cols[i].outl.style.opacity = clamp(p(t, 4.35, 4.5)); }
+  const ex = iCub(p(t, 6.95, 7.5));
+  $('odo').style.filter = ex > 0 ? `blur(${ex * 14}px)` : ''; if (t > 6.95) $('odo').style.opacity = 1 - ex;
+  // pastille « ANS » et « D'ENGAGEMENT »
+  const kb = p(t, 5.3, 5.9), kbo = iBack(p(t, 6.9, 7.3));
+  $('b-ans').style.transform = `scale(${oBack(kb) * (1 - kbo)}) rotate(${lerp(-35, -12, oExpo(kb))}deg)`;
+  letters($('b-eng'), t, 5.6, 6.95, .03);
+
+  // ── 2. SAVE / THE / DATE
+  const dc = -14 * clamp(p(t, 7.6, 11.55));
+  $('scC').style.transform = `translateX(${dc}px)`;
+  letters($('c1'), t, 7.7, 10.9, .045, .9); letters($('c2'), t, 7.85, 10.97, .045, .9); letters($('c3'), t, 8.0, 11.04, .045, .9);
+  rule($('c-rule'), t, 8.6, .9, 10.95);
+
+  // ── 3. La date
+  $('scD').style.transform = `translateX(${-12 * clamp(p(t, 11.55, 15.75))}px)`;
+  letters($('d15'), t, 11.65, 15.2, .07, .95);
+  letters($('dm'), t, 11.9, 15.25, .03); letters($('dj'), t, 12.0, 15.28, .03);
+  rule($('d-rule'), t, 12.3, .8, 15.2);
+  letters($('dh'), t, 12.5, 15.31, .03);
+  const kh = oExpo(p(t, 12.7, 13.7)), kho = ioCub(p(t, 15.2, 15.7));
+  $('d-hair').style.transformOrigin = kho > 0 ? '100% 50%' : '0 50%'; $('d-hair').style.transform = `scaleX(${kho > 0 ? 1 - kho : kh})`;
+  letters($('dl1'), t, 12.9, 15.34, .02); letters($('dl2'), t, 13.05, 15.37, .012);
+
+  // ── 4. Signature
+  const ze = 1 + .035 * clamp(p(t, 15.75, DUR));
+  $('scE').style.transform = `scale(${ze})`;
+  letters($('e-org'), t, 15.9, null, .02);
+  const kl = oExpo(p(t, 16.1, 17.1));
+  $('e-logo').style.opacity = kl; $('e-logo').style.transform = `translateY(${(1 - kl) * 22}px)`;
+  $('e-logo').style.filter = kl < 1 ? `blur(${(1 - kl) * 10}px)` : '';
+  rule($('e-rule'), t, 16.7, .8);
+}
+window.DUR = DUR; window.render = render;
+window.ready = document.fonts.ready.then(() => {
+  document.querySelectorAll('.ln').forEach(split); buildOdo(); render(0);
+});
+if (!navigator.webdriver) {
+  const t0 = performance.now();
+  window.ready.then(function loop() { render(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); });
+}
+</script>
+</body></html>
