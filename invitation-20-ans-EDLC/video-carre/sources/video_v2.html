@@ -14,11 +14,10 @@ body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
 .m>span{display:inline-block;will-change:transform}
 .clair{color:var(--clair)}
 /* Scène A : compteur */
-#a-depuis{top:300px;font-size:36px;font-weight:700;letter-spacing:10px}
-#a-annee{top:360px;font-size:250px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
-#a-ligne{position:absolute;left:240px;top:700px;width:600px;height:4px;background:rgba(253,232,230,.2)}
+#a-annee{top:330px;font-size:250px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+#a-ligne{position:absolute;left:240px;top:670px;width:600px;height:4px;background:rgba(253,232,230,.2)}
 #a-ligne i{position:absolute;left:0;top:0;height:4px;width:600px;background:var(--rouge);transform-origin:0 0}
-#a-tag{top:745px;font-size:30px;font-weight:600}
+#a-tag{top:715px;font-size:30px;font-weight:600}
 /* Scène B : le 20 */
 #b-vingt{font-family:"Open Sans";font-weight:800;font-size:640px;letter-spacing:14px}
 #b-ans{position:absolute;left:770px;top:180px;width:200px;height:200px;border-radius:50%;background:var(--rouge);
@@ -28,33 +27,31 @@ body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
 #c-l1{top:250px;font-size:150px;font-weight:800;line-height:1.05}
 #c-l2{top:410px;font-size:150px;font-weight:800;line-height:1.05}
 #c-bar{position:absolute;left:390px;top:612px;width:300px;height:10px;background:var(--rouge);transform-origin:0 50%}
-#c-t1{top:665px;font-size:46px;font-weight:800;line-height:1.15}
-#c-t2{top:722px;font-size:46px;font-weight:800;line-height:1.15}
+#c-t1{top:670px;font-size:56px;font-weight:800;line-height:1.15}
 /* Scène D : la date */
-#d-mardi{top:170px;font-size:50px;font-weight:800;letter-spacing:16px}
+#d-mardi{top:170px;font-size:50px;font-weight:800;letter-spacing:16px;text-indent:16px}
 #d-15{top:215px;font-size:330px;font-weight:800;line-height:1}
-#d-juin{top:575px;font-size:66px;font-weight:800;letter-spacing:6px}
-#d-heure{position:absolute;left:420px;top:690px;width:240px;height:76px;border-radius:38px;background:var(--rouge);
+#d-juin{top:575px;font-size:66px;font-weight:800;letter-spacing:6px;text-indent:6px}
+#d-heure{position:absolute;left:355px;top:690px;width:370px;height:76px;border-radius:38px;background:var(--rouge);
   font-size:42px;font-weight:800;display:flex;align-items:center;justify-content:center}
 #d-lieu1{top:815px;font-size:32px;font-weight:700}
 #d-lieu2{top:862px;font-size:26px}
 /* Scène E : récapitulatif final */
-#e-std{top:50px;font-size:42px;font-weight:800;letter-spacing:2px}
+#e-std{top:50px;font-size:42px;font-weight:800;letter-spacing:2px;text-indent:2px}
 #e-vingt{font-family:"Open Sans";font-weight:800;font-size:560px;letter-spacing:12px}
-#e-t1,#e-t2{font-size:56px;font-weight:800;line-height:1.1}
-#e-t1{top:560px}#e-t2{top:622px}
-#e-bar{position:absolute;left:510px;top:722px;width:60px;height:5px;background:var(--clair)}
-#e-date{top:748px;font-size:36px;font-weight:700}
-#e-lieu1{top:808px;font-size:24px}
-#e-lieu2{top:842px;font-size:24px}
-#e-card{position:absolute;left:375px;top:900px;width:330px;height:140px;background:var(--clair);border-radius:16px}
-#e-card div{position:absolute;top:18px;left:0;width:330px;text-align:center;font-size:15px;font-weight:700;color:var(--bleu);letter-spacing:.3px}
-#e-card img{position:absolute;left:30px;top:50px;width:270px}
+#e-t1{top:565px;font-size:60px;font-weight:800;line-height:1.1}
+#e-bar{position:absolute;left:510px;top:663px;width:60px;height:5px;background:var(--clair)}
+#e-date{top:688px;font-size:36px;font-weight:700}
+#e-lieu1{top:748px;font-size:24px}
+#e-lieu2{top:782px;font-size:24px}
+/* bloc organisateur sans cadre : filet, mention et logo en version claire */
+#e-card{position:absolute;left:240px;top:842px;width:600px;height:200px;border-top:1.5px solid rgba(253,232,230,.35)}
+#e-card div{position:absolute;top:24px;left:0;width:600px;text-align:center;font-size:16px;font-weight:700;letter-spacing:4px;text-indent:4px;opacity:.85}
+#e-card img{position:absolute;left:140px;top:62px;width:320px}
 </style></head><body>
 <canvas id="fond" width="1080" height="1080"></canvas>
 
 <div class="scene" id="scA">
-  <div class="c clair" id="a-depuis">DE 2007 À 2027</div>
   <div class="c clair" id="a-annee">2007</div>
   <div id="a-ligne"><i></i></div>
   <div class="c" id="a-tag"><span class="m"><span>La micro-assurance pour entreprendre</span></span></div>
@@ -69,15 +66,14 @@ body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
   <div class="c" id="c-l1"><span class="m"><span>SAVE THE</span></span></div>
   <div class="c" id="c-l2"><span class="m"><span>DATE</span></span></div>
   <div id="c-bar"></div>
-  <div class="c" id="c-t1"><span class="m"><span>20 ANS DES ENTREPRENEURS</span></span></div>
-  <div class="c" id="c-t2"><span class="m"><span>DE LA CITÉ</span></span></div>
+  <div class="c" id="c-t1"><span class="m"><span>20 ANS D’ENGAGEMENT</span></span></div>
 </div>
 
 <div class="scene" id="scD">
   <div class="c clair" id="d-mardi">MARDI</div>
   <div class="c clair" id="d-15">15</div>
   <div class="c clair" id="d-juin">JUIN 2027</div>
-  <div id="d-heure">18h30</div>
+  <div id="d-heure">18h30–23h</div>
   <div class="c" id="d-lieu1">Le Philanthro-Lab</div>
   <div class="c" id="d-lieu2">13-15 rue de la Bûcherie, 75005 Paris</div>
 </div>
@@ -85,13 +81,12 @@ body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
 <div class="scene" id="scE">
   <svg viewBox="0 0 1080 1080"><g id="e-g"><text id="e-vingt" x="540" y="540" text-anchor="middle" fill="#FDE8E6" fill-opacity="0" stroke="#FDE8E6" stroke-width="7" stroke-linejoin="round">20</text></g></svg>
   <div class="c clair" id="e-std">SAVE THE DATE</div>
-  <div class="c clair" id="e-t1">20 ANS DES ENTREPRENEURS</div>
-  <div class="c clair" id="e-t2">DE LA CITÉ</div>
+  <div class="c clair" id="e-t1">20 ANS D’ENGAGEMENT</div>
   <div id="e-bar"></div>
-  <div class="c" id="e-date">Mardi 15 juin 2027 · 18h30</div>
+  <div class="c" id="e-date">Mardi 15 juin 2027 · 18h30–23h</div>
   <div class="c" id="e-lieu1">Le Philanthro-Lab</div>
   <div class="c" id="e-lieu2">13-15 rue de la Bûcherie, 75005 Paris</div>
-  <div id="e-card"><div>ORGANISÉE PAR LA FONDATION</div><img src="logo_edlc.png" alt="Entrepreneurs de la Cité"></div>
+  <div id="e-card"><div>ORGANISÉE PAR LA FONDATION</div><img src="logo_edlc_clair.png" alt="Entrepreneurs de la Cité"></div>
 </div>
 
 <canvas id="confettis" width="1080" height="1080"></canvas>
@@ -176,7 +171,6 @@ function render(t) {
   drawBackground(t, (t >= SC.C[0] && t < SC.C[1]) ? COL.clair : COL.bleu);
 
   // ── Scène A : « Depuis 2007 » → 2027
-  rise($('a-depuis'), t, .2, .9, -25);
   const ka = inout(p(t, .7, 2.7));
   $('a-annee').textContent = 2007 + Math.round(20 * ka);
   const pop = t > 2.7 ? 1 + .08 * Math.sin(clamp(p(t, 2.7, 3.1)) * Math.PI) : 1;
@@ -197,7 +191,7 @@ function render(t) {
   // ── Scène C : SAVE THE DATE (fond rouge clair)
   mask($('c-l1'), t, 8.6, 9.2); mask($('c-l2'), t, 8.85, 9.45);
   $('c-bar').style.transform = `scaleX(${out3(p(t, 9.5, 10.1))})`;
-  mask($('c-t1'), t, 9.9, 10.5); mask($('c-t2'), t, 10.1, 10.7);
+  mask($('c-t1'), t, 9.9, 10.5);
 
   // ── Scène D : la date
   rise($('d-mardi'), t, 12.6, 13.2, -30);
@@ -212,7 +206,7 @@ function render(t) {
   const ze = .95 + .05 * out3(p(t, 16.2, 17.4));
   $('e-g').setAttribute('transform', `translate(540 330) scale(${ze}) translate(-540 -330)`);
   rise($('e-std'), t, 16.5, 17.1, -30);
-  rise($('e-t1'), t, 16.9, 17.5); rise($('e-t2'), t, 17.05, 17.65);
+  rise($('e-t1'), t, 16.9, 17.5);
   $('e-bar').style.transform = `scaleX(${out3(p(t, 17.4, 17.9))})`;
   rise($('e-date'), t, 17.5, 18.0); rise($('e-lieu1'), t, 17.7, 18.2, 25); rise($('e-lieu2'), t, 17.8, 18.3, 25);
   const kc = p(t, 18.0, 18.6); $('e-card').style.opacity = clamp(kc * 2); $('e-card').style.transform = `scale(${.6 + .4 * back(kc)})`;
