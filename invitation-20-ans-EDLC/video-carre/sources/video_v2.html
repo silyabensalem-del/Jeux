@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Vidéo carrée v2 – 20 ans EDLC</title><style>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Vidéo carrée – 20 ans EDLC</title><style>
 @font-face{font-family:"Open Sans";font-weight:400;src:url(open-sans-latin-400-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
@@ -37,17 +37,10 @@ body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
 #d-lieu1{top:815px;font-size:32px;font-weight:700}
 #d-lieu2{top:862px;font-size:26px}
 /* Scène E : récapitulatif final */
-#e-std{top:50px;font-size:42px;font-weight:800;letter-spacing:2px;text-indent:2px}
-#e-vingt{font-family:"Open Sans";font-weight:800;font-size:560px;letter-spacing:12px}
-#e-t1{top:565px;font-size:60px;font-weight:800;line-height:1.1}
-#e-bar{position:absolute;left:510px;top:663px;width:60px;height:5px;background:var(--clair)}
-#e-date{top:688px;font-size:36px;font-weight:700}
-#e-lieu1{top:748px;font-size:24px}
-#e-lieu2{top:782px;font-size:24px}
-/* bloc organisateur sans cadre : filet, mention et logo en version claire */
-#e-card{position:absolute;left:240px;top:842px;width:600px;height:200px;border-top:1.5px solid rgba(253,232,230,.35)}
-#e-card div{position:absolute;top:24px;left:0;width:600px;text-align:center;font-size:16px;font-weight:700;letter-spacing:4px;text-indent:4px;opacity:.85}
-#e-card img{position:absolute;left:140px;top:62px;width:320px}
+/* Scène E : signature de l'organisateur (sans répéter la date) */
+#e-org{top:385px;font-size:22px;font-weight:700;letter-spacing:6px;text-indent:6px}
+#e-logo{position:absolute;left:230px;top:440px;width:620px}
+#e-bar{position:absolute;left:500px;top:680px;width:80px;height:6px;background:var(--rouge)}
 </style></head><body>
 <canvas id="fond" width="1080" height="1080"></canvas>
 
@@ -79,23 +72,17 @@ body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
 </div>
 
 <div class="scene" id="scE">
-  <svg viewBox="0 0 1080 1080"><g id="e-g"><text id="e-vingt" x="540" y="540" text-anchor="middle" fill="#FDE8E6" fill-opacity="0" stroke="#FDE8E6" stroke-width="7" stroke-linejoin="round">20</text></g></svg>
-  <div class="c clair" id="e-std">SAVE THE DATE</div>
-  <div class="c clair" id="e-t1">20 ANS D’ENGAGEMENT</div>
+  <div class="c" id="e-org">ORGANISÉE PAR LA FONDATION</div>
+  <img id="e-logo" src="logo_edlc_clair.png" alt="Entrepreneurs de la Cité">
   <div id="e-bar"></div>
-  <div class="c" id="e-date">Mardi 15 juin 2027 · 18h30–23h</div>
-  <div class="c" id="e-lieu1">Le Philanthro-Lab</div>
-  <div class="c" id="e-lieu2">13-15 rue de la Bûcherie, 75005 Paris</div>
-  <div id="e-card"><div>ORGANISÉE PAR LA FONDATION</div><img src="logo_edlc_clair.png" alt="Entrepreneurs de la Cité"></div>
 </div>
 
 <canvas id="confettis" width="1080" height="1080"></canvas>
-<div class="full" id="w1" style="background:var(--rouge)"></div>
-<div class="full" id="w2" style="background:var(--clair)"></div>
+<div class="full" id="volet" style="background:var(--bleu)"></div>
 
 <script>
 // render(t) dessine l'image exacte à t secondes (export image par image) ; ouverte seule, la page joue en boucle.
-const DUR = 20;
+const DUR = 19.5;
 const COL = { bleu:'#26408F', clair:'#FDE8E6', rouge:'#EF3F34' };
 const clamp = x => Math.max(0, Math.min(1, x));
 const out3 = x => 1 - Math.pow(1 - clamp(x), 3);
@@ -106,7 +93,7 @@ const lerp = (a, b, k) => a + (b - a) * k;
 const $ = id => document.getElementById(id);
 const LEN = 2300;   // longueur de tiret > périmètre du plus long contour de glyphe (le « 2 »)
 
-// fenêtres des scènes [début, fin] — les changements ont lieu sous les volets de transition
+// fenêtres des scènes [début, fin] — les changements ont lieu sous le volet de transition
 const SC = { A:[0, 3.95], B:[3.95, 8.25], C:[8.25, 12.25], D:[12.25, 16.05], E:[16.05, DUR] };
 const show = (id, t, [a, b]) => { $(id).style.visibility = (t >= a && t < b) ? 'visible' : 'hidden'; };
 function rise(el, t, a, b, dy = 40) { const k = out3(p(t, a, b)); el.style.opacity = k; el.style.transform = `translateY(${(1-k)*dy}px)`; }
@@ -119,7 +106,7 @@ function wipe(el, t, a) {
   const lead = lerp(-20, 1500, cov), trail = lerp(-20, 1500, unc);
   el.style.clipPath = `polygon(${trail}px 0,${lead}px 0,${lead-380}px 1080px,${trail-380}px 1080px)`;
 }
-function wipes(t, a) { wipe($('w1'), t, a - .08); wipe($('w2'), t, a); }
+function wipes(t, a) { wipe($('volet'), t, a); }
 
 // générateur pseudo-aléatoire à graine : même vidéo à chaque export
 function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let r = Math.imul(seed ^ seed >>> 15, 1 | seed);
@@ -130,7 +117,7 @@ function makeBurst(seed, n, cx, cy) { const r = rng(seed); return Array.from({le
   return { x: cx, y: cy, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 350, c: PAL[r()*5|0], s: 10 + r()*16,
            sh: r()*3|0, rot: r()*6.28, vr: (r()-.5)*14, drag: 1.4 + r() }; }); }
 const BURST1 = makeBurst(7, 90, 540, 520);
-const BURST2 = makeBurst(21, 45, 540, 560);
+const BURST2 = makeBurst(21, 45, 540, 530);
 const RAIN = (() => { const r = rng(99); return Array.from({length:46}, () => ({ x: r()*1080, y0: -60 - r()*1100, v: 70 + r()*90,
   amp: 10 + r()*30, f: .6 + r()*1.4, ph: r()*6.28, c: PAL[r()*5|0], s: 8 + r()*12, sh: r()*3|0, rot: r()*6.28, vr: (r()-.5)*4 })); })();
 
@@ -151,17 +138,10 @@ function drawBurst(g, list, dt) {
 }
 function drawBackground(t, bg) {
   const g = $('fond').getContext('2d'); g.fillStyle = bg; g.fillRect(0, 0, 1080, 1080);
-  // grands anneaux qui tournent lentement
-  g.lineWidth = 2; g.strokeStyle = bg === COL.clair ? 'rgba(38,64,143,.10)' : 'rgba(253,232,230,.08)';
-  for (let i = 0; i < 4; i++) {
-    const r = 260 + i * 150, a0 = t * (.12 + i * .05) * (i % 2 ? -1 : 1);
-    g.setLineDash([r * .9, r * .35]); g.beginPath(); g.arc(540, 540, r, a0, a0 + Math.PI * 2); g.stroke();
-  }
-  g.setLineDash([]);
   // confettis de fin : derrière les textes pour ne pas gêner la lecture
-  drawBurst(g, BURST2, t - 18.1);
-  if (t > 18.2) {
-    const dt = t - 18.2, a = clamp(dt * 1.5) * .7;
+  drawBurst(g, BURST2, t - 17.2);
+  if (t > 17.3) {
+    const dt = t - 17.3, a = clamp(dt * 1.5) * .7;
     for (const q of RAIN) piece(g, q.x + q.amp * Math.sin(q.f * dt * 3 + q.ph), q.y0 + 300 + q.v * dt * 3, q.s, q.rot + q.vr * dt, q.c, q.sh, a);
   }
 }
@@ -200,25 +180,19 @@ function render(t) {
   const kh = p(t, 13.7, 14.2); $('d-heure').style.opacity = clamp(kh * 3); $('d-heure').style.transform = `scale(${back(kh)})`;
   rise($('d-lieu1'), t, 14.1, 14.7, 25); rise($('d-lieu2'), t, 14.3, 14.9, 25);
 
-  // ── Scène E : récapitulatif
-  const e = $('e-vingt'), de = out3(p(t, 16.3, 17.3));
-  e.style.strokeDasharray = LEN; e.style.strokeDashoffset = LEN * (1 - de); e.style.fillOpacity = .14 * out3(p(t, 16.9, 17.4));
-  const ze = .95 + .05 * out3(p(t, 16.2, 17.4));
-  $('e-g').setAttribute('transform', `translate(540 330) scale(${ze}) translate(-540 -330)`);
-  rise($('e-std'), t, 16.5, 17.1, -30);
-  rise($('e-t1'), t, 16.9, 17.5);
-  $('e-bar').style.transform = `scaleX(${out3(p(t, 17.4, 17.9))})`;
-  rise($('e-date'), t, 17.5, 18.0); rise($('e-lieu1'), t, 17.7, 18.2, 25); rise($('e-lieu2'), t, 17.8, 18.3, 25);
-  const kc = p(t, 18.0, 18.6); $('e-card').style.opacity = clamp(kc * 2); $('e-card').style.transform = `scale(${.6 + .4 * back(kc)})`;
+  // ── Scène E : signature
+  rise($('e-org'), t, 16.5, 17.1, -25);
+  const kl = p(t, 16.7, 17.4); $('e-logo').style.opacity = out3(kl); $('e-logo').style.transform = `scale(${lerp(.85, 1, out3(kl))})`;
+  $('e-bar').style.transform = `scaleX(${out3(p(t, 17.3, 17.8))})`;
 
-  // ── Confettis (au-dessus des scènes, sous les volets)
+  // ── Confettis (au-dessus des scènes, sous le volet)
   const g = $('confettis').getContext('2d'); g.clearRect(0, 0, 1080, 1080);
   drawBurst(g, BURST1, t - 5.75);
 
   // ── Volets de transition
   wipe2(t);
 }
-// deux volets (rouge puis rouge clair) pour chaque changement de scène
+// un seul volet bleu pour chaque changement de scène
 function wipe2(t) {
   const starts = [SC.B[1], SC.C[1], SC.D[1]].map(x => x - .45);
   const a = [SC.A[1] - .45, ...starts].find(s => t >= s - .1 && t <= s + .95);
