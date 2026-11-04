@@ -30,15 +30,16 @@ body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
 #c2 .ch{color:transparent;-webkit-text-stroke:5px var(--clair)}
 #c-rule{left:96px;top:934px;width:888px;transform-origin:0 50%}
 /* la date */
-#scD .wrap{position:absolute;left:0;top:30px;width:1080px;height:1080px}
+#scD .wrap{position:absolute;left:0;top:12px;width:1080px;height:1080px}
 #d15{left:70px;top:127px;font-size:420px;font-weight:800;letter-spacing:-12px}
 #dm{left:610px;top:236px;font-size:46px;font-weight:800;letter-spacing:8px}
 #dj{left:610px;top:299px;font-size:66px;font-weight:800;letter-spacing:1px}
 #d-rule{left:612px;top:425px;width:378px;transform-origin:0 50%}
 #dh{left:610px;top:503px;font-size:46px;font-weight:700}
 #d-hair{position:absolute;left:84px;top:650px;width:906px;height:1.5px;background:rgba(253,232,230,.35);transform-origin:0 50%;transform:scaleX(0)}
-#dl1{left:84px;top:681px;font-size:32px;font-weight:800;letter-spacing:3px}
-#dl2{left:84px;top:734px;font-size:28px;font-weight:400}
+#dlab{left:86px;top:675px;font-size:18px;font-weight:800;letter-spacing:5px;color:var(--rouge)}
+#dl1{left:82px;top:700px;font-size:50px;font-weight:800;letter-spacing:1px}
+#dl2{left:84px;top:770px;font-size:32px;font-weight:400}
 /* signature */
 #e-org{left:0;width:1080px;text-align:center;top:404px;font-size:20px;font-weight:700;letter-spacing:6px;text-indent:6px}
 #e-logo{position:absolute;left:230px;top:448px;width:620px;opacity:0}
@@ -69,6 +70,7 @@ body{font-family:"Open Sans",sans-serif;color:var(--clair);position:relative}
   <div class="rule" id="d-rule"></div>
   <div class="ln" id="dh">18h30 – 23h</div>
   <div id="d-hair"></div>
+  <div class="ln" id="dlab">LIEU</div>
   <div class="ln" id="dl1">LE PHILANTHRO-LAB</div>
   <div class="ln" id="dl2">13-15 rue de la Bûcherie, 75005 Paris</div>
 </div></div>
@@ -177,7 +179,7 @@ function render(t) {
   letters($('dh'), t, 12.5, 15.31, .03);
   const kh = oExpo(p(t, 12.7, 13.7)), kho = ioCub(p(t, 15.2, 15.7));
   $('d-hair').style.transformOrigin = kho > 0 ? '100% 50%' : '0 50%'; $('d-hair').style.transform = `scaleX(${kho > 0 ? 1 - kho : kh})`;
-  letters($('dl1'), t, 12.9, 15.34, .02); letters($('dl2'), t, 13.05, 15.37, .012);
+  letters($('dlab'), t, 12.8, 15.33, .03); letters($('dl1'), t, 12.9, 15.34, .025); letters($('dl2'), t, 13.05, 15.37, .012);
 
   // ── 4. Signature
   const ze = 1 + .035 * clamp(p(t, 15.75, DUR));
