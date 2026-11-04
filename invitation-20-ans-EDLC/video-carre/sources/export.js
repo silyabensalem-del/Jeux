@@ -1,5 +1,5 @@
 // Export de video.html en MP4 1080x1080, 30 i/s.
-// Usage : node export.js [dossier_images] [fichier.mp4]  (nécessite playwright + ffmpeg)
+// Usage : [HTML=video_v2.html] node export.js [dossier_images] [fichier.mp4]  (nécessite playwright + ffmpeg)
 const { chromium } = require('playwright');
 const { execFileSync } = require('child_process');
 const fs = require('fs'), path = require('path');
@@ -11,7 +11,7 @@ const only = process.env.ONLY ? process.env.ONLY.split(',').map(Number) : null; 
   fs.mkdirSync(frames, { recursive: true });
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1080, height: 1080 } });
-  await page.goto('file://' + path.join(__dirname, 'video.html'));
+  await page.goto('file://' + path.join(__dirname, process.env.HTML || 'video.html'));
   await page.evaluate(() => window.ready);
   const dur = await page.evaluate(() => window.DUR);
   const times = only || Array.from({ length: Math.round(dur * FPS) }, (_, i) => i / FPS);
