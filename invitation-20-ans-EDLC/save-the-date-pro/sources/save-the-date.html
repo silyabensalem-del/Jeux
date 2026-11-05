@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Save the date – 20 ans EDLC (1152 × 1440 px)</title>
+<style>
+@font-face{font-family:"Open Sans";font-weight:400;src:url(open-sans-latin-400-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:400;font-style:italic;src:url(open-sans-latin-400-italic.woff2)}
+@font-face{font-family:"Open Sans";font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
+@page{size:1152px 1440px;margin:0}
+:root{
+  --bleu:#26408F;      /* bleu charte EDLC */
+  --bleu-nuit:#1B2F6E;
+  --rouge:#EF3F34;     /* rouge pictogramme EDLC */
+  --encre:#2B3150;     /* texte courant, bleu-gris très foncé */
+  --gris:#6B7190;
+  --filet:#D9DDEA;
+  --fond:#FFFFFF;
+  --M:88px;            /* marge latérale */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1152px;height:1440px;background:var(--fond)}
+body{font-family:"Open Sans",sans-serif;color:var(--encre);position:relative;overflow:hidden;
+  -webkit-font-smoothing:antialiased;font-kerning:normal;font-feature-settings:"kern","liga"}
+.a{position:absolute}
+
+/* ---------- Le grand 20 ---------- */
+.vingt{left:-58px;top:-352px;font-weight:800;font-size:1120px;line-height:1;letter-spacing:-74px;color:var(--bleu);white-space:nowrap}
+.x-ans{right:var(--M);top:604px;font-weight:800;font-size:30px;letter-spacing:.32em;color:var(--rouge)}
+
+/* ---------- Titre ---------- */
+.titre{left:var(--M);right:var(--M);top:676px;text-align:center}
+.surtitre{display:inline-flex;align-items:center;gap:18px;font-weight:800;font-size:22px;letter-spacing:.34em;color:var(--rouge);margin-left:.34em}
+.surtitre:before,.surtitre:after{content:"";width:46px;height:3px;background:var(--rouge);border-radius:2px}
+.surtitre:after{margin-left:-.34em}
+h1{margin-top:14px;font-weight:800;font-size:66px;line-height:1.02;letter-spacing:-.012em;color:var(--bleu)}
+
+.intro{left:132px;right:132px;top:838px;text-align:center;font-size:22.5px;line-height:1.55;color:var(--encre)}
+.intro b{font-weight:700;color:var(--bleu)}
+.prog{left:var(--M);right:var(--M);top:960px;text-align:center;font-size:20.5px;line-height:1.5;color:var(--encre)}
+.prog b{font-weight:800;color:var(--rouge);letter-spacing:.02em}
+
+/* ---------- Bloc pratique ---------- */
+.infos{left:var(--M);right:var(--M);top:1032px;height:128px;display:grid;grid-template-columns:1.05fr .8fr 1.65fr;
+  border-top:2px solid var(--bleu);border-bottom:1px solid var(--filet)}
+.infos>div{padding:24px 0 0 26px;position:relative}
+.infos>div+div:before{content:"";position:absolute;left:0;top:24px;bottom:22px;width:1px;background:var(--filet)}
+.infos>div:first-child{padding-left:0}
+.lab{font-size:14px;font-weight:800;letter-spacing:.22em;color:var(--rouge)}
+.val{margin-top:8px;font-size:27px;font-weight:800;line-height:1.15;color:var(--bleu);letter-spacing:-.005em}
+.val.s{font-size:19.5px;font-weight:700;line-height:1.32}
+.anim{left:var(--M);right:var(--M);top:1176px;text-align:center;font-size:18px;font-style:italic;color:var(--gris)}
+.anim b{font-style:italic;font-weight:700;color:var(--encre)}
+
+/* ---------- Pied ---------- */
+.pied{left:0;right:0;top:1236px;bottom:0}
+.logo{left:var(--M);top:1294px;width:310px}
+.cta{right:var(--M);top:1240px;width:500px;height:164px;background:var(--bleu);border-radius:14px;color:#fff;text-decoration:none;display:block}
+.cta .t{position:absolute;left:34px;top:34px;font-weight:800;font-size:28px;letter-spacing:-.005em}
+.cta .t:after{content:"";display:block;width:34px;height:3px;background:var(--rouge);margin-top:10px;border-radius:2px}
+.cta .s{position:absolute;left:34px;top:94px;font-size:16.5px;line-height:1.35;color:#DCE2F5}
+.cta .s u{text-underline-offset:3px;color:#fff;font-weight:700}
+.qr{position:absolute;right:14px;top:14px;width:136px;height:136px;background:#fff;border-radius:9px;padding:9px}
+.picto{left:-86px;top:690px}
+
+/* ---------- Variante B : fond bleu (proposition alternative) ---------- */
+body.b{--fond:#26408F;--encre:#E6EAF7;--gris:#B9C3E3;--filet:rgba(255,255,255,.22)}
+body.b .vingt{color:#34509E}
+body.b h1,body.b .val,body.b .intro b{color:#fff}
+body.b .anim b{color:#fff}
+body.b .infos{border-top-color:#fff}
+body.b .picto{stroke:#7F93CF}
+body.b .cta{background:#fff;color:var(--bleu)}
+body.b .cta .s{color:#4A557A} body.b .cta .s u{color:var(--bleu)}
+body.b .qr{background:#fff;border:1.5px solid #D9DDEA}
+body.b .logo-blanc{display:block}
+.logo-fond{display:none}
+body.b .logo-fond{display:block;left:var(--M);top:1240px;width:376px;height:164px;background:#fff;border-radius:14px}
+body.b .logo{z-index:1;left:122px;top:1276px;width:308px}
+body.b .lab,body.b .surtitre,body.b .prog b{color:#FFCB1F}
+body.b .surtitre:before,body.b .surtitre:after{background:#FFCB1F}
+</style>
+</head>
+<body>
+
+<!-- Pictogramme EDLC en filet, en fond à gauche (rappel de l'affiche retenue) -->
+<svg class="a picto" width="190" height="300" viewBox="0 0 190 300" fill="none" stroke="#26408F" stroke-width="2.2" opacity=".9">
+  <!-- tête -->
+  <circle cx="95" cy="58" r="44"/>
+  <!-- bras : demi-anneau ouvert vers le haut -->
+  <path d="M10 70 A85 85 0 0 0 180 70 L148 70 A53 53 0 0 1 42 70 Z" transform="rotate(-14 95 70)"/>
+  <!-- jambes : demi-anneau ouvert vers le bas -->
+  <path d="M10 290 A85 85 0 0 1 180 290 L148 290 A53 53 0 0 0 42 290 Z" transform="rotate(-14 95 290)"/>
+</svg>
+
+<div class="a vingt">20</div>
+
+<div class="a titre">
+  <div class="surtitre">SAVE THE DATE</div>
+  <h1>20 ans d’engagement&nbsp;!</h1>
+</div>
+
+<p class="a intro">La Fondation <b>Entrepreneurs de la Cité</b> a le plaisir de vous inviter à sa soirée anniversaire&#8239;: retour sur 20&nbsp;ans d’engagement auprès des entrepreneurs vulnérables à travers l’assurance sociale et solidaire.</p>
+
+<p class="a prog"><b>Au programme</b>&nbsp;&nbsp;Rétrospective en images · Invités de prestige · Perspectives pour l’avenir</p>
+
+<div class="a infos">
+  <div><div class="lab">DATE</div><div class="val">Mardi 15 juin 2027</div></div>
+  <div><div class="lab">HORAIRE</div><div class="val">18h30 – 23h</div></div>
+  <div><div class="lab">LIEU</div><div class="val s">Le Philanthro-Lab<br>13-15 rue de la Bûcherie, 75005&nbsp;Paris</div></div>
+</div>
+
+<p class="a anim">Soirée animée par <b>Jean-Luc Gambey</b>, associé chez Vovoxx Média</p>
+
+<div class="a logo-fond"></div>
+<img class="a logo" src="logo_edlc.png" alt="Entrepreneurs de la Cité – La micro-assurance pour entreprendre">
+
+<a class="a cta" href="https://www.helloasso.com/associations/fondation-entrepreneurs-de-la-cite/evenements/20-ans-de-la-fondation-entrepreneurs-de-la-cite">
+  <span class="t">Inscription</span>
+  <span class="s"><u>Cliquez ici</u> ou scannez<br>le QR code ci-contre</span>
+  <span class="qr"><svg id="qr" width="118" height="118" shape-rendering="crispEdges"><path fill="#1B2F6E"/></svg></span>
+</a>
+
+<script>
+// QR code vectoriel injecté par render.js (lien HelloAsso extrait du PDF retenu)
+</script>
+</body>
+</html>
