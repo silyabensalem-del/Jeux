@@ -41,11 +41,39 @@ p,.t{font-size:19px;line-height:1.6;text-wrap:pretty}
 .insc b{display:block;font-size:19px;font-weight:700;color:var(--bleu)}
 .insc span{display:block;font-size:16px;line-height:1.5;margin-top:4px}
 .qr{right:var(--M);top:1268px;width:124px;height:124px}
+
+/* ---- Couleurs du chiffre et décors, par direction ---- */
+.d2{stroke:var(--c2)} .h0t{stroke:var(--c0t)} .h0b{stroke:var(--c0b)}
+body{--c2:#26408F;--c0t:#26408F;--c0b:#26408F}
+.deco,.bloc{display:none;left:0;top:0}
+.bloc{width:1152px;height:650px}
+.std{color:var(--rouge)}
+
+/* 1 · SOLEIL : fond jaune EDLC, 2 bleu, 0 rouge/bleu */
+body.v1{background:#FFCB1F;--c0t:#EF3F34}
+body.v1 .filet{background:#1F2A55}
+
+/* 2 · BLOC ROUGE : bandeau rouge plein cadre, chiffre blanc */
+body.v2{--c2:#fff;--c0t:#fff;--c0b:#fff}
+body.v2 .bloc{display:block;background:#EF3F34}
+body.v2 .std{top:704px}
+body.v2 h1{top:734px}
+
+/* 3 · GÉOMÉTRIQUE : fond blanc, disque jaune dans le 0, quart de cercle bleu */
+body.v3{--c0t:#EF3F34;--c0b:#EF3F34}
+body.v3 .deco{display:block}
+body.v3 .disque{fill:#FFCB1F}
+body.v3 .quart{fill:#FFCB1F;display:none}
 </style>
 </head>
 <body>
 
-<svg class="a" style="left:0;top:0" width="1152" height="640" viewBox="0 0 1152 640"><path d="M119.2 286.5 A162.0 162.0 0 1 1 393.7 317.7 L120.8 516.0 L508.0 516.0" fill="none" stroke="#26408F" stroke-width="140" stroke-linejoin="miter" stroke-miterlimit="6"/><path d="M596.0 286 A230.0 230.0 0 0 1 1056.0 286" fill="none" stroke="#26408F" stroke-width="140"/><path d="M596.0 302 A230.0 230.0 0 0 0 1056.0 302" fill="none" stroke="#26408F" stroke-width="140"/></svg>
+<div class="a bloc"></div>
+<svg class="a deco" width="1152" height="1440" viewBox="0 0 1152 1440">
+  <circle class="disque" cx="826" cy="294" r="172"/>
+  <path class="quart" d="M1152 1440 L1152 1110 A330 330 0 0 0 822 1440 Z"/>
+</svg>
+<svg class="a" style="left:0;top:0" width="1152" height="640" viewBox="0 0 1152 640"><path d="M119.2 286.5 A162.0 162.0 0 1 1 393.7 317.7 L120.8 516.0 L508.0 516.0" fill="none" class="d2" stroke-width="140" stroke-linejoin="miter" stroke-miterlimit="6"/><path class="h0t" d="M596.0 286 A230.0 230.0 0 0 1 1056.0 286" fill="none" stroke-width="140"/><path class="h0b" d="M596.0 302 A230.0 230.0 0 0 0 1056.0 302" fill="none" stroke-width="140"/></svg>
 
 <div class="a std">Save the date</div>
 <h1 class="a">20 ans d’engagement&nbsp;!</h1>
