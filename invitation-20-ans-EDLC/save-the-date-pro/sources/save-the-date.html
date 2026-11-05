@@ -5,125 +5,77 @@
 <title>Save the date – 20 ans EDLC (1152 × 1440 px)</title>
 <style>
 @font-face{font-family:"Open Sans";font-weight:400;src:url(open-sans-latin-400-normal.woff2)}
-@font-face{font-family:"Open Sans";font-weight:400;font-style:italic;src:url(open-sans-latin-400-italic.woff2)}
 @font-face{font-family:"Open Sans";font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
 @page{size:1152px 1440px;margin:0}
-:root{
-  --bleu:#26408F;   /* bleu charte EDLC */
-  --rouge:#EF3F34;  /* rouge pictogramme EDLC */
-  --encre:#2B3150;  /* texte courant */
-  --gris:#6B7190;
-  --filet:#E2DCD0;
-  --M:88px;         /* marge */
-  --creme:#FBF7F0;  /* fond papier chaud */
-  --orange:#F89410; --jaune:#FFCB1F;
-}
+/* Grille : marges 88 px, deux colonnes (88–540 / 600–1064). Deux couleurs : bleu EDLC + rouge du pictogramme. */
+:root{--bleu:#26408F;--rouge:#EF3F34;--texte:#1F2A55;--M:88px;--C2:600px}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1152px;height:1440px;background:var(--creme)}
-body{font-family:"Open Sans",sans-serif;color:var(--encre);position:relative;overflow:hidden;
-  -webkit-font-smoothing:antialiased;font-kerning:normal}
+html,body{width:1152px;height:1440px;background:#fff}
+body{font-family:"Open Sans",sans-serif;color:var(--texte);position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
 .a{position:absolute}
 
-/* Le grand 20, avec le pictogramme EDLC qui célèbre au cœur du zéro */
 .vingt{left:-58px;top:-352px;font-weight:800;font-size:1120px;line-height:1;letter-spacing:-74px;color:var(--bleu);white-space:nowrap}
 .picto{left:797px;top:262px}
-.vingt.ombre{left:-40px;top:-334px;color:transparent;-webkit-text-stroke:3px var(--rouge)}
-.confetti{left:0;top:0}
 
-/* Titre, ferré à gauche sur la marge */
-.surtitre{left:var(--M);top:688px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:20px;letter-spacing:.32em;color:var(--rouge)}
-.surtitre:before{content:"";width:40px;height:3px;background:var(--rouge)}
-h1{left:var(--M);top:718px;font-weight:800;font-size:80px;line-height:1.05;letter-spacing:-.02em;color:var(--bleu);white-space:nowrap}
+.std{left:var(--M);top:694px;font-size:26px;font-weight:700;color:var(--rouge)}
+h1{left:var(--M);top:724px;font-size:78px;font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--bleu);white-space:nowrap}
 
-/* Deux colonnes : récit à gauche, informations pratiques à droite */
-.col-g{left:var(--M);top:872px;width:530px}
-.intro{font-size:20px;line-height:1.58}
-.intro b{font-weight:700;color:var(--bleu)}
-.prog{margin-top:26px}
-.lab{font-size:13.5px;font-weight:800;letter-spacing:.24em;color:var(--rouge)}
-.prog ul{list-style:none;margin-top:10px}
-.prog li{font-size:19px;line-height:1.62;padding-left:26px;position:relative}
-.prog li:before{content:"";position:absolute;left:0;top:.8em;width:12px;height:2px;background:var(--rouge)}
+.filet{left:var(--M);right:var(--M);height:2px;background:var(--bleu)}
+.f1{top:852px}
+.f2{top:1236px;height:1px}
 
-.sep{display:none}
+p,.t{font-size:19px;line-height:1.6;text-wrap:pretty}
+.c1{left:var(--M);top:884px;width:452px}
+.c1 p+p{margin-top:18px}
+.c1 b,.c2 b{font-weight:700;color:var(--bleu)}
 
-.col-d{left:680px;top:846px;width:384px;padding:34px 36px 30px;background:var(--bleu);border-radius:22px;color:#fff;box-shadow:0 18px 40px -18px rgba(38,64,143,.55)}
-.jour{font-size:17px;font-weight:800;letter-spacing:.26em;color:var(--jaune)}
-.date{margin-top:4px;font-size:52px;font-weight:800;line-height:1.02;letter-spacing:-.02em;color:#fff}
-.heure{margin-top:8px;font-size:27px;font-weight:700;color:#fff}
-.lieu{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.25);font-size:18px;line-height:1.5;color:#DCE2F5}
-.lieu b{display:block;font-size:21px;font-weight:800;color:#fff}
-.anim{margin-top:18px;font-size:15.5px;font-style:italic;line-height:1.45;color:#B9C4E6}
-.anim b{font-weight:700;color:#fff}
+.c2{left:var(--C2);top:878px;width:464px}
+.date{font-size:44px;font-weight:800;line-height:1.1;letter-spacing:-.015em;color:var(--bleu)}
+.heure{font-size:44px;font-weight:400;line-height:1.1;letter-spacing:-.015em;color:var(--bleu)}
+.c2 p{margin-top:22px}
 
-/* Pied de page */
-.pied{left:var(--M);right:var(--M);top:1250px;height:1px;background:var(--filet)}
-.logo{left:var(--M);top:1290px;width:300px}
-.insc{right:236px;top:1292px;text-align:right;text-decoration:none;color:var(--encre)}
-.insc .t{display:block;font-size:26px;font-weight:800;color:var(--bleu);letter-spacing:-.01em}
-.insc .s{display:block;margin-top:6px;font-size:16px;line-height:1.45}
-.insc u{font-weight:700;color:var(--rouge);text-underline-offset:3px}
-.qr{right:var(--M);top:1272px;width:128px;height:128px}
+.logo{left:var(--M);top:1280px;width:300px}
+.insc{left:var(--C2);top:1276px;width:300px;text-decoration:none;color:var(--texte)}
+.insc b{display:block;font-size:19px;font-weight:700;color:var(--bleu)}
+.insc span{display:block;font-size:16px;line-height:1.5;margin-top:4px}
+.qr{right:var(--M);top:1268px;width:124px;height:124px}
 </style>
 </head>
 <body>
 
-<div class="a vingt ombre">20</div>
 <div class="a vingt">20</div>
-
-<!-- Confettis : formes issues du pictogramme EDLC -->
-<svg class="a confetti" width="1152" height="1440" viewBox="0 0 1152 1440">
-  <defs>
-    <path id="arc" d="M-30 0 A30 30 0 0 0 30 0 L18 0 A18 18 0 0 1 -18 0 Z"/>
-  </defs>
-  <use href="#arc" fill="#FFCB1F" transform="translate(96 250) rotate(-28) scale(1.5)"/>
-  <use href="#arc" fill="#EF3F34" transform="translate(210 168) rotate(152) scale(.8)"/>
-  <circle cx="58" cy="372" r="11" fill="#F89410"/>
-  <circle cx="62" cy="176" r="18" fill="none" stroke="#26408F" stroke-width="5"/>
-  <circle cx="150" cy="128" r="7" fill="#26408F"/>
-  <use href="#arc" fill="#F89410" transform="translate(1040 712) rotate(24) scale(1.05)"/>
-  <circle cx="1090" cy="790" r="9" fill="#FFCB1F"/>
-  <circle cx="1112" cy="672" r="6" fill="#EF3F34"/>
-</svg>
-
-<!-- Pictogramme EDLC (vectoriel, géométrie du logo) -->
 <svg class="a picto" width="110" height="139" viewBox="0 0 153 193" fill="#EF3F34">
   <circle cx="76.5" cy="33.5" r="33.5"/>
   <path d="M0 35 A76.5 76.5 0 0 0 153 35 L121.5 35 A45 45 0 0 1 31.5 35 Z"/>
   <path d="M0 193 A76.5 76.5 0 0 1 153 193 L121.5 193 A45 45 0 0 0 31.5 193 Z"/>
 </svg>
 
-<div class="a surtitre">SAVE THE DATE</div>
+<div class="a std">Save the date</div>
 <h1 class="a">20 ans d’engagement&nbsp;!</h1>
 
-<div class="a col-g">
-  <p class="intro">La Fondation <b>Entrepreneurs de la Cité</b> a le plaisir de vous inviter à sa soirée anniversaire&#8239;: retour sur 20&nbsp;ans d’engagement auprès des entrepreneurs vulnérables à travers l’assurance sociale et solidaire.</p>
-  <div class="prog">
-    <div class="lab">AU PROGRAMME</div>
-    <ul><li>Rétrospective en images</li><li>Invités de prestige</li><li>Perspectives pour l’avenir</li></ul>
-  </div>
+<div class="a filet f1"></div>
+
+<div class="a c1">
+  <p>La Fondation <b>Entrepreneurs de la Cité</b> a le plaisir de vous inviter à sa soirée anniversaire&#8239;: retour sur 20&nbsp;ans d’engagement auprès des entrepreneurs vulnérables à travers l’assurance sociale et solidaire.</p>
+  <p>Au programme&#8239;: rétrospective en images, invités de prestige et perspectives pour l’avenir.</p>
 </div>
 
-<div class="a sep"></div>
-
-<div class="a col-d">
-  <div class="jour">MARDI</div>
-  <div class="date">15 juin 2027</div>
+<div class="a c2">
+  <div class="date">Mardi 15 juin 2027</div>
   <div class="heure">18h30 – 23h</div>
-  <div class="lieu"><b>Le Philanthro-Lab</b>13-15 rue de la Bûcherie<br>75005 Paris</div>
-  <p class="anim">Soirée animée par <b>Jean-Luc Gambey</b>,<br>associé chez Vovoxx Média</p>
+  <p><b>Le Philanthro-Lab</b><br>13-15 rue de la Bûcherie, 75005 Paris</p>
+  <p>Soirée animée par Jean-Luc Gambey,<br>associé chez Vovoxx Média</p>
 </div>
 
-<div class="a pied"></div>
+<div class="a filet f2"></div>
 <img class="a logo" src="logo_edlc.png" alt="Entrepreneurs de la Cité – La micro-assurance pour entreprendre">
-
 <a class="a insc" href="https://www.helloasso.com/associations/fondation-entrepreneurs-de-la-cite/evenements/20-ans-de-la-fondation-entrepreneurs-de-la-cite">
-  <span class="t">Inscription</span>
-  <span class="s"><u>Cliquez ici</u> ou scannez<br>le QR code</span>
+  <b>Inscription</b>
+  <span>Cliquez ici ou scannez<br>le QR code</span>
 </a>
-<svg id="qr" class="a qr" shape-rendering="crispEdges"><path fill="#1B2F6E"/></svg>
+<svg id="qr" class="a qr" shape-rendering="crispEdges"><path fill="#1F2A55"/></svg>
 
 </body>
 </html>
