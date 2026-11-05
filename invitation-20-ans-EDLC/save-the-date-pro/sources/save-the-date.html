@@ -11,103 +11,99 @@
 @font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
 @page{size:1152px 1440px;margin:0}
 :root{
-  --bleu:#26408F;      /* bleu charte EDLC */
-  --bleu-nuit:#1B2F6E;
-  --rouge:#EF3F34;     /* rouge pictogramme EDLC */
-  --encre:#2B3150;     /* texte courant, bleu-gris très foncé */
+  --bleu:#26408F;   /* bleu charte EDLC */
+  --rouge:#EF3F34;  /* rouge pictogramme EDLC */
+  --encre:#2B3150;  /* texte courant */
   --gris:#6B7190;
-  --filet:#D9DDEA;
-  --fond:#FFFFFF;
-  --M:88px;            /* marge latérale */
+  --filet:#D5DAE8;
+  --M:88px;         /* marge */
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1152px;height:1440px;background:var(--fond)}
+html,body{width:1152px;height:1440px;background:#fff}
 body{font-family:"Open Sans",sans-serif;color:var(--encre);position:relative;overflow:hidden;
-  -webkit-font-smoothing:antialiased;font-kerning:normal;font-feature-settings:"kern","liga"}
+  -webkit-font-smoothing:antialiased;font-kerning:normal}
 .a{position:absolute}
 
-/* ---------- Le grand 20 ---------- */
+/* Le grand 20, avec le pictogramme EDLC qui célèbre au cœur du zéro */
 .vingt{left:-58px;top:-352px;font-weight:800;font-size:1120px;line-height:1;letter-spacing:-74px;color:var(--bleu);white-space:nowrap}
-.x-ans{right:var(--M);top:604px;font-weight:800;font-size:30px;letter-spacing:.32em;color:var(--rouge)}
+.picto{left:797px;top:262px}
 
-/* ---------- Titre ---------- */
-.titre{left:var(--M);right:var(--M);top:676px;text-align:center}
-.surtitre{display:inline-flex;align-items:center;gap:18px;font-weight:800;font-size:22px;letter-spacing:.34em;color:var(--rouge);margin-left:.34em}
-.surtitre:before,.surtitre:after{content:"";width:46px;height:3px;background:var(--rouge);border-radius:2px}
-.surtitre:after{margin-left:-.34em}
-h1{margin-top:14px;font-weight:800;font-size:66px;line-height:1.02;letter-spacing:-.012em;color:var(--bleu)}
+/* Titre, ferré à gauche sur la marge */
+.surtitre{left:var(--M);top:688px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:20px;letter-spacing:.32em;color:var(--rouge)}
+.surtitre:before{content:"";width:40px;height:3px;background:var(--rouge)}
+h1{left:var(--M);top:718px;font-weight:800;font-size:80px;line-height:1.05;letter-spacing:-.02em;color:var(--bleu);white-space:nowrap}
 
-.intro{left:132px;right:132px;top:838px;text-align:center;font-size:22.5px;line-height:1.55;color:var(--encre)}
+/* Deux colonnes : récit à gauche, informations pratiques à droite */
+.col-g{left:var(--M);top:868px;width:520px}
+.intro{font-size:20px;line-height:1.58}
 .intro b{font-weight:700;color:var(--bleu)}
-.prog{left:var(--M);right:var(--M);top:960px;text-align:center;font-size:20.5px;line-height:1.5;color:var(--encre)}
-.prog b{font-weight:800;color:var(--rouge);letter-spacing:.02em}
+.prog{margin-top:26px}
+.lab{font-size:13.5px;font-weight:800;letter-spacing:.24em;color:var(--rouge)}
+.prog ul{list-style:none;margin-top:10px}
+.prog li{font-size:19px;line-height:1.62;padding-left:26px;position:relative}
+.prog li:before{content:"";position:absolute;left:0;top:.8em;width:12px;height:2px;background:var(--rouge)}
 
-/* ---------- Bloc pratique ---------- */
-.infos{left:var(--M);right:var(--M);top:1032px;height:128px;display:grid;grid-template-columns:1.05fr .8fr 1.65fr;
-  border-top:2px solid var(--bleu);border-bottom:1px solid var(--filet)}
-.infos>div{padding:24px 0 0 26px;position:relative}
-.infos>div+div:before{content:"";position:absolute;left:0;top:24px;bottom:22px;width:1px;background:var(--filet)}
-.infos>div:first-child{padding-left:0}
-.lab{font-size:14px;font-weight:800;letter-spacing:.22em;color:var(--rouge)}
-.val{margin-top:8px;font-size:27px;font-weight:800;line-height:1.15;color:var(--bleu);letter-spacing:-.005em}
-.val.s{font-size:19.5px;font-weight:700;line-height:1.32}
-.anim{left:var(--M);right:var(--M);top:1176px;text-align:center;font-size:18px;font-style:italic;color:var(--gris)}
-.anim b{font-style:italic;font-weight:700;color:var(--encre)}
+.sep{left:660px;top:874px;width:1px;height:300px;background:var(--filet)}
 
-/* ---------- Pied ---------- */
-.pied{left:0;right:0;top:1236px;bottom:0}
-.logo{left:var(--M);top:1294px;width:310px}
-.cta{right:var(--M);top:1240px;width:500px;height:164px;background:var(--bleu);border-radius:14px;color:#fff;text-decoration:none;display:block}
-.cta .t{position:absolute;left:34px;top:34px;font-weight:800;font-size:28px;letter-spacing:-.005em}
-.cta .t:after{content:"";display:block;width:34px;height:3px;background:var(--rouge);margin-top:10px;border-radius:2px}
-.cta .s{position:absolute;left:34px;top:94px;font-size:16.5px;line-height:1.35;color:#DCE2F5}
-.cta .s u{text-underline-offset:3px;color:#fff;font-weight:700}
-.qr{position:absolute;right:14px;top:14px;width:136px;height:136px;background:#fff;border-radius:9px;padding:9px}
-.picto{left:-86px;top:690px}
+.col-d{left:704px;top:868px;width:360px}
+.jour{font-size:19px;font-weight:800;letter-spacing:.24em;color:var(--rouge)}
+.date{margin-top:2px;font-size:54px;font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--bleu)}
+.heure{margin-top:6px;font-size:28px;font-weight:700;color:var(--bleu)}
+.lieu{margin-top:26px;padding-top:22px;border-top:1px solid var(--filet);font-size:18.5px;line-height:1.5}
+.lieu b{display:block;font-size:21px;font-weight:800;color:var(--bleu)}
+.anim{margin-top:20px;font-size:16.5px;font-style:italic;line-height:1.45;color:var(--gris)}
+.anim b{font-weight:700;color:var(--encre)}
 
+/* Pied de page */
+.pied{left:var(--M);right:var(--M);top:1232px;height:1px;background:var(--filet)}
+.logo{left:var(--M);top:1280px;width:300px}
+.insc{right:236px;top:1282px;text-align:right;text-decoration:none;color:var(--encre)}
+.insc .t{display:block;font-size:26px;font-weight:800;color:var(--bleu);letter-spacing:-.01em}
+.insc .s{display:block;margin-top:6px;font-size:16px;line-height:1.45}
+.insc u{font-weight:700;color:var(--rouge);text-underline-offset:3px}
+.qr{right:var(--M);top:1262px;width:128px;height:128px}
 </style>
 </head>
 <body>
 
-<!-- Pictogramme EDLC en filet, en fond à gauche (rappel de l'affiche retenue) -->
-<svg class="a picto" width="190" height="300" viewBox="0 0 190 300" fill="none" stroke="#26408F" stroke-width="2.2" opacity=".9">
-  <!-- tête -->
-  <circle cx="95" cy="58" r="44"/>
-  <!-- bras : demi-anneau ouvert vers le haut -->
-  <path d="M10 70 A85 85 0 0 0 180 70 L148 70 A53 53 0 0 1 42 70 Z" transform="rotate(-14 95 70)"/>
-  <!-- jambes : demi-anneau ouvert vers le bas -->
-  <path d="M10 290 A85 85 0 0 1 180 290 L148 290 A53 53 0 0 0 42 290 Z" transform="rotate(-14 95 290)"/>
-</svg>
-
 <div class="a vingt">20</div>
 
-<div class="a titre">
-  <div class="surtitre">SAVE THE DATE</div>
-  <h1>20 ans d’engagement&nbsp;!</h1>
+<!-- Pictogramme EDLC (vectoriel, géométrie du logo) -->
+<svg class="a picto" width="110" height="139" viewBox="0 0 153 193" fill="#EF3F34">
+  <circle cx="76.5" cy="33.5" r="33.5"/>
+  <path d="M0 35 A76.5 76.5 0 0 0 153 35 L121.5 35 A45 45 0 0 1 31.5 35 Z"/>
+  <path d="M0 193 A76.5 76.5 0 0 1 153 193 L121.5 193 A45 45 0 0 0 31.5 193 Z"/>
+</svg>
+
+<div class="a surtitre">SAVE THE DATE</div>
+<h1 class="a">20 ans d’engagement&nbsp;!</h1>
+
+<div class="a col-g">
+  <p class="intro">La Fondation <b>Entrepreneurs de la Cité</b> a le plaisir de vous inviter à sa soirée anniversaire&#8239;: retour sur 20&nbsp;ans d’engagement auprès des entrepreneurs vulnérables à travers l’assurance sociale et solidaire.</p>
+  <div class="prog">
+    <div class="lab">AU PROGRAMME</div>
+    <ul><li>Rétrospective en images</li><li>Invités de prestige</li><li>Perspectives pour l’avenir</li></ul>
+  </div>
 </div>
 
-<p class="a intro">La Fondation <b>Entrepreneurs de la Cité</b> a le plaisir de vous inviter à sa soirée anniversaire&#8239;: retour sur 20&nbsp;ans d’engagement auprès des entrepreneurs vulnérables à travers l’assurance sociale et solidaire.</p>
+<div class="a sep"></div>
 
-<p class="a prog"><b>Au programme</b>&nbsp;&nbsp;Rétrospective en images · Invités de prestige · Perspectives pour l’avenir</p>
-
-<div class="a infos">
-  <div><div class="lab">DATE</div><div class="val">Mardi 15 juin 2027</div></div>
-  <div><div class="lab">HORAIRE</div><div class="val">18h30 – 23h</div></div>
-  <div><div class="lab">LIEU</div><div class="val s">Le Philanthro-Lab<br>13-15 rue de la Bûcherie, 75005&nbsp;Paris</div></div>
+<div class="a col-d">
+  <div class="jour">MARDI</div>
+  <div class="date">15 juin 2027</div>
+  <div class="heure">18h30 – 23h</div>
+  <div class="lieu"><b>Le Philanthro-Lab</b>13-15 rue de la Bûcherie<br>75005 Paris</div>
+  <p class="anim">Soirée animée par <b>Jean-Luc Gambey</b>,<br>associé chez Vovoxx Média</p>
 </div>
 
-<p class="a anim">Soirée animée par <b>Jean-Luc Gambey</b>, associé chez Vovoxx Média</p>
-
+<div class="a pied"></div>
 <img class="a logo" src="logo_edlc.png" alt="Entrepreneurs de la Cité – La micro-assurance pour entreprendre">
 
-<a class="a cta" href="https://www.helloasso.com/associations/fondation-entrepreneurs-de-la-cite/evenements/20-ans-de-la-fondation-entrepreneurs-de-la-cite">
+<a class="a insc" href="https://www.helloasso.com/associations/fondation-entrepreneurs-de-la-cite/evenements/20-ans-de-la-fondation-entrepreneurs-de-la-cite">
   <span class="t">Inscription</span>
-  <span class="s"><u>Cliquez ici</u> ou scannez<br>le QR code ci-contre</span>
-  <span class="qr"><svg id="qr" width="118" height="118" shape-rendering="crispEdges"><path fill="#1B2F6E"/></svg></span>
+  <span class="s"><u>Cliquez ici</u> ou scannez<br>le QR code</span>
 </a>
+<svg id="qr" class="a qr" shape-rendering="crispEdges"><path fill="#1B2F6E"/></svg>
 
-<script>
-// QR code vectoriel injecté par render.js (lien HelloAsso extrait du PDF retenu)
-</script>
 </body>
 </html>
