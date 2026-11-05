@@ -5,100 +5,100 @@
 <title>Save the date – 20 ans EDLC (1152 × 1440 px)</title>
 <style>
 @font-face{font-family:"Open Sans";font-weight:400;src:url(open-sans-latin-400-normal.woff2)}
+@font-face{font-family:"Open Sans";font-weight:400;font-style:italic;src:url(open-sans-latin-400-italic.woff2)}
 @font-face{font-family:"Open Sans";font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
 @font-face{font-family:"Open Sans";font-weight:800;src:url(open-sans-latin-800-normal.woff2)}
 @page{size:1152px 1440px;margin:0}
-/* Grille : marges 88 px, deux colonnes (88–540 / 600–1064). Deux couleurs : bleu EDLC + rouge du pictogramme. */
-:root{--bleu:#26408F;--rouge:#EF3F34;--texte:#1F2A55;--M:88px;--C2:600px}
+/* Couleurs relevées sur l'affiche retenue */
+:root{
+  --bleu:#26408F;
+  --bleu-pale:#E6EAF5;
+  --rouge:#E53D34;
+  --rose-pale:#FDE8E6;
+  --texte:#3B3D4A;
+  --col-l:136px; --col-w:880px;   /* colonne centrale : 136 → 1016 px */
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:1152px;height:1440px;background:#fff}
-body{font-family:"Open Sans",sans-serif;color:var(--texte);position:relative;overflow:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:"Open Sans",sans-serif;color:var(--texte);position:relative;overflow:hidden;-webkit-font-smoothing:antialiased;font-kerning:normal}
 .a{position:absolute}
+.col{left:var(--col-l);width:var(--col-w)}
+.c{text-align:center}
 
-.vingt{left:-58px;top:-352px;font-weight:800;font-size:1120px;line-height:1;letter-spacing:-74px;color:var(--bleu);white-space:nowrap}
-.picto{left:797px;top:262px}
+/* Grand 20 */
+.vingt{left:-44px;top:-268px;font-weight:800;font-size:1010px;line-height:1;letter-spacing:28px;color:var(--bleu);white-space:nowrap}
 
-.std{left:var(--M);top:694px;font-size:26px;font-weight:700;color:var(--rouge)}
-h1{left:var(--M);top:724px;font-size:78px;font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--bleu);white-space:nowrap}
+/* Titre */
+.t1{top:688px;font-weight:800;font-size:30px;letter-spacing:.18em;color:var(--bleu)}
+.t2{top:726px;font-weight:800;font-size:56px;line-height:1.1;letter-spacing:-.005em;color:var(--bleu)}
 
-.filet{left:var(--M);right:var(--M);height:2px;background:var(--bleu)}
-.f1{top:852px}
-.f2{top:1236px;height:1px}
+/* Texte */
+.intro{top:818px;font-size:21px;line-height:1.6;text-wrap:balance}
+.intro b{font-weight:700;color:var(--bleu)}
+.prog{top:930px;font-size:20px;line-height:1.6;left:56px;width:1040px}
+.prog b{font-weight:700;color:var(--bleu)}
 
-p,.t{font-size:19px;line-height:1.6;text-wrap:pretty}
-.c1{left:var(--M);top:884px;width:452px}
-.c1 p+p{margin-top:18px}
-.c1 b,.c2 b{font-weight:700;color:var(--bleu)}
+/* Pastilles */
+.pill{height:78px;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.p-date{top:1000px;background:var(--bleu-pale);color:var(--bleu);font-weight:800;font-size:31px;letter-spacing:-.005em;gap:30px}
+.p-date .sep{width:2px;height:40px;background:var(--bleu);opacity:.85}
+.p-date span{display:flex;align-items:center;gap:14px}
+.p-lieu{top:1092px;height:66px;background:var(--rose-pale);color:var(--rouge);font-weight:700;font-size:20.5px;gap:12px}
+.anim{top:1180px;font-size:18.5px;font-style:italic;color:#555866}
+.anim b{font-weight:700;font-style:italic;color:var(--texte)}
 
-.c2{left:var(--C2);top:878px;width:464px}
-.date{font-size:44px;font-weight:800;line-height:1.1;letter-spacing:-.015em;color:var(--bleu)}
-.heure{font-size:44px;font-weight:400;line-height:1.1;letter-spacing:-.015em;color:var(--bleu)}
-.c2 p{margin-top:22px}
+/* Pied */
+.logo{left:var(--col-l);top:1296px;width:300px}
+.cta{left:560px;top:1262px;width:456px;height:136px;background:var(--bleu);border-radius:18px;color:#fff;text-decoration:none}
+.cta .h{position:absolute;left:30px;top:30px;font-size:28px;font-weight:800}
+.cta .s{position:absolute;left:30px;top:78px;font-size:16.5px;line-height:1.4;color:#E3E8F6}
+.cta .s u{color:#fff;font-weight:700;text-underline-offset:3px}
+.qrbox{position:absolute;right:14px;top:14px;width:108px;height:108px;background:#fff;border-radius:10px;padding:7px}
+.qrbox svg{width:94px;height:94px;display:block}
 
-.logo{left:var(--M);top:1280px;width:300px}
-.insc{left:var(--C2);top:1276px;width:300px;text-decoration:none;color:var(--texte)}
-.insc b{display:block;font-size:19px;font-weight:700;color:var(--bleu)}
-.insc span{display:block;font-size:16px;line-height:1.5;margin-top:4px}
-.qr{right:var(--M);top:1268px;width:124px;height:124px}
-
-/* ---- Couleurs du chiffre et décors, par direction ---- */
-.d2{stroke:var(--c2)} .h0t{stroke:var(--c0t)} .h0b{stroke:var(--c0b)}
-body{--c2:#26408F;--c0t:#26408F;--c0b:#26408F}
-.deco,.bloc{display:none;left:0;top:0}
-.bloc{width:1152px;height:650px}
-.std{color:var(--rouge)}
-
-/* 1 · SOLEIL : fond jaune EDLC, 2 bleu, 0 rouge/bleu */
-body.v1{background:#FFCB1F;--c0t:#EF3F34}
-body.v1 .filet{background:#1F2A55}
-
-/* 2 · BLOC ROUGE : bandeau rouge plein cadre, chiffre blanc */
-body.v2{--c2:#fff;--c0t:#fff;--c0b:#fff}
-body.v2 .bloc{display:block;background:#EF3F34}
-body.v2 .std{top:704px}
-body.v2 h1{top:734px}
-
-/* 3 · GÉOMÉTRIQUE : fond blanc, disque jaune dans le 0, quart de cercle bleu */
-body.v3{--c0t:#EF3F34;--c0b:#EF3F34}
-body.v3 .deco{display:block}
-body.v3 .disque{fill:#FFCB1F}
-body.v3 .quart{fill:#FFCB1F;display:none}
+/* Pictogramme en filet (comme l'original) */
+.picto{left:-74px;top:972px}
 </style>
 </head>
 <body>
 
-<div class="a bloc"></div>
-<svg class="a deco" width="1152" height="1440" viewBox="0 0 1152 1440">
-  <circle class="disque" cx="826" cy="294" r="172"/>
-  <path class="quart" d="M1152 1440 L1152 1110 A330 330 0 0 0 822 1440 Z"/>
+<div class="a vingt">20</div>
+
+<svg class="a picto" width="200" height="300" viewBox="0 0 200 300" fill="none" stroke="#26408F" stroke-width="2.4">
+  <g transform="rotate(-12 100 150)">
+    <circle cx="100" cy="52" r="42"/>
+    <path d="M14 64 A86 86 0 0 0 186 64 L148 64 A48 48 0 0 1 52 64 Z"/>
+    <path d="M14 268 A86 86 0 0 1 186 268 L148 268 A48 48 0 0 0 52 268 Z"/>
+  </g>
 </svg>
-<svg class="a" style="left:0;top:0" width="1152" height="640" viewBox="0 0 1152 640"><path d="M119.2 286.5 A162.0 162.0 0 1 1 393.7 317.7 L120.8 516.0 L508.0 516.0" fill="none" class="d2" stroke-width="140" stroke-linejoin="miter" stroke-miterlimit="6"/><path class="h0t" d="M596.0 286 A230.0 230.0 0 0 1 1056.0 286" fill="none" stroke-width="140"/><path class="h0b" d="M596.0 302 A230.0 230.0 0 0 0 1056.0 302" fill="none" stroke-width="140"/></svg>
 
-<div class="a std">Save the date</div>
-<h1 class="a">20 ans d’engagement&nbsp;!</h1>
+<div class="a col c t1">SAVE THE DATE</div>
+<div class="a col c t2">20 ANS D’ENGAGEMENT&nbsp;!</div>
 
-<div class="a filet f1"></div>
+<p class="a col c intro">La Fondation <b>Entrepreneurs de la Cité</b> a le plaisir de vous inviter à sa soirée anniversaire&#8239;: retour sur 20&nbsp;ans d’engagement auprès des entrepreneurs vulnérables à travers l’assurance sociale et solidaire.</p>
+<p class="a col c prog"><b>Au programme&#8239;:</b> rétrospective en images, invités de prestige et perspectives pour l’avenir&nbsp;!</p>
 
-<div class="a c1">
-  <p>La Fondation <b>Entrepreneurs de la Cité</b> a le plaisir de vous inviter à sa soirée anniversaire&#8239;: retour sur 20&nbsp;ans d’engagement auprès des entrepreneurs vulnérables à travers l’assurance sociale et solidaire.</p>
-  <p>Au programme&#8239;: rétrospective en images, invités de prestige et perspectives pour l’avenir.</p>
+<div class="a col pill p-date">
+  <span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#26408F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Mardi 15 juin 2027</span>
+  <i class="sep"></i>
+  <span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#26408F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>18h30 – 23h</span>
 </div>
 
-<div class="a c2">
-  <div class="date">Mardi 15 juin 2027</div>
-  <div class="heure">18h30 – 23h</div>
-  <p><b>Le Philanthro-Lab</b><br>13-15 rue de la Bûcherie, 75005 Paris</p>
-  <p>Soirée animée par Jean-Luc Gambey,<br>associé chez Vovoxx Média</p>
+<div class="a col pill p-lieu">
+  <svg width="22" height="28" viewBox="0 0 22 28"><path d="M11 0C4.9 0 0 4.9 0 11c0 8.2 11 17 11 17s11-8.8 11-17C22 4.9 17.1 0 11 0z" fill="#E53D34"/><circle cx="11" cy="10.5" r="4" fill="#FDE8E6"/></svg>
+  Le Philanthro-Lab, 13-15 rue de la Bûcherie, 75005 Paris
 </div>
 
-<div class="a filet f2"></div>
+<p class="a col c anim">Soirée animée par <b>Jean-Luc Gambey</b>, associé chez Vovoxx Média</p>
+
 <img class="a logo" src="logo_edlc.png" alt="Entrepreneurs de la Cité – La micro-assurance pour entreprendre">
-<a class="a insc" href="https://www.helloasso.com/associations/fondation-entrepreneurs-de-la-cite/evenements/20-ans-de-la-fondation-entrepreneurs-de-la-cite">
-  <b>Inscription</b>
-  <span>Cliquez ici ou scannez<br>le QR code</span>
+
+<a class="a cta" href="https://www.helloasso.com/associations/fondation-entrepreneurs-de-la-cite/evenements/20-ans-de-la-fondation-entrepreneurs-de-la-cite">
+  <span class="h">Inscription</span>
+  <span class="s"><u>Cliquez ici</u> ou scannez<br>ce QR code</span>
+  <span class="qrbox"><svg id="qr" shape-rendering="crispEdges"><path fill="#1B2F6E"/></svg></span>
 </a>
-<svg id="qr" class="a qr" shape-rendering="crispEdges"><path fill="#1F2A55"/></svg>
 
 </body>
 </html>
